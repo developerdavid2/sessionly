@@ -44,16 +44,22 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-main-900: rgba(23, 22, 30);
+  --color-main-700: rgba(28, 28, 31);
+  --color-main-500: rgba(32, 34, 40);
+  --color-main-300: rgba(55, 53, 77);
+  --color-main-100: rgba(98, 104, 119, 0.83);
+
 }
 
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: rgba(32, 34, 40);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: rgba(32, 34, 40);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --popover-foreground: rgba(32, 34, 40);
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
@@ -72,7 +78,7 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-foreground: rgba(32, 34, 40);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
@@ -82,7 +88,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: rgba(32, 34, 40);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -121,5 +127,8 @@
   }
   body {
     @apply bg-background text-foreground font-inter min-h-full;
+  }
+  .dark body {
+    background-image: linear-gradient(to right, #10091a 0%, #131923 60%, #06101e 100%);
   }
 }
