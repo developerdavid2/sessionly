@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { Input } from "@/components/ui/input";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -29,6 +30,7 @@ export default function Home() {
   };
   return (
     <div className="flex flex-col gap-y-4 p-6">
+      <div className="flex-shrink-0"></div>
       <Input
         placeholder="Name"
         value={name}
