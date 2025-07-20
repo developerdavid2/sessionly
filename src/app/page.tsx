@@ -1,56 +1,19 @@
-"use client";
+import React from "react";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import HomeView from "@/modules/home/ui/views/home-view";
+import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { authClient } from "@/lib/auth-client";
-import { Input } from "@/components/ui/input";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+const Page = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-export default function Home() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  if (!session) {
+    redirect("/sign-in");
+  }
 
-  const onSubmit = async () => {
-    await authClient.signUp.email(
-      {
-        name,
-        email,
-        password,
-      },
-      {
-        onSuccess: () => {
-          window.alert(`User ${name} created successfully!`);
-        },
-        onError: () => {
-          window.alert("Error creating user. Please try again.");
-        },
-      },
-    );
-  };
-  return (
-    <div className="flex flex-col gap-y-4 p-6">
-      <div className="flex-shrink-0"></div>
-      <Input
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <Input
-        placeholder="Email address"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <Input
-        placeholder="Password"
-        value={password}
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <Button className="" onClick={onSubmit}>
-        Create Account
-      </Button>
-    </div>
-  );
-}
+  return <HomeView />;
+};
+
+export default Page;
