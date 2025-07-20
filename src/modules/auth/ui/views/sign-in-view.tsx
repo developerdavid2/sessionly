@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { Alert, AlertTitle } from "@/components/ui/alert";
-import { LucideGithub, OctagonAlertIcon, Eye, EyeOff } from "lucide-react";
+import { OctagonAlertIcon, Eye, EyeOff } from "lucide-react";
 import Logo from "@/components/ui/logo";
 import AuthView from "@/modules/auth/ui/views/auth-view";
 import Link from "next/link";
@@ -29,7 +29,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const formSchema = z
   .object({
-    email: z.string().email(),
+    email: z.email(),
     password: z.string().min(1, "Password is required"),
     rememberMe: z.boolean().default(false),
   })
