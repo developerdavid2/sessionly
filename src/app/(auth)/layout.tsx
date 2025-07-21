@@ -1,5 +1,4 @@
 import React from "react";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 
 interface AuthenticationLayoutProps {
   children: React.ReactNode;

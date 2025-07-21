@@ -4,7 +4,6 @@ import React from "react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarTrigger,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
@@ -14,15 +13,13 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import { BotIcon, StarIcon, VideoIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { FaRobot, FaStar, FaVideo } from "react-icons/fa";
-import { MdOutlineWorkspacePremium, MdWorkspacePremium } from "react-icons/md";
+import { FaRobot, FaVideo } from "react-icons/fa";
+import { MdOutlineWorkspacePremium } from "react-icons/md";
 import { DashboardUserButton } from "@/modules/dashboard/ui/components/dashboard-user-button";
 
 const firstSection = [
@@ -47,8 +44,8 @@ const secondSection = [
 ];
 
 const DashboardSidebar = () => {
-  // const pathname = usePathname();
-  const pathname = "/upgrade";
+  const pathname = usePathname();
+  // const pathname = "/upgrade";
 
   return (
     <Sidebar

@@ -49,6 +49,7 @@ export const DashboardUserButton = () => {
       });
     } catch (error) {
       setIsLoggingOut(false);
+      console.log(error);
     }
   };
 
