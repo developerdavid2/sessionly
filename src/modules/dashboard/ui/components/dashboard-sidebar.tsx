@@ -11,6 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from "@/components/ui/sidebar";
 
 import Link from "next/link";
@@ -43,33 +44,54 @@ const secondSection = [
   },
 ];
 
-const DashboardSidebar = () => {
+const DashboardSidebar = ({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) => {
   const pathname = usePathname();
-  // const pathname = "/upgrade";
 
   return (
     <Sidebar
+      collapsible="icon"
       className={cn(
         "relative overflow-hidden border border-white/20 dark:border-slate-700/30 shadow-md shadow-gray-100/5",
       )}
+      {...props}
     >
       {/* Subtle Light Rays */}
       <div className="absolute top-2 -left-1/2 w-32 h-52 bg-gradient-to-bl from-main-100 to-transparent rotate-45 blur-[5rem]" />
 
-      <SidebarHeader className="text-sidebar-accent-foreground">
-        <Link href="/" className="flex items-center gap-2 px-2 pt-2">
-          <Image
-            src="/logo.webp"
-            height={150}
-            width={150}
-            alt="Sessionly AI"
-            className="object-cover"
-          />
-        </Link>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              size="lg"
+              asChild
+              className="hover:bg-transparent focus-visible:bg-transparent w-fit"
+            >
+              <Link href="/" className="flex items-center gap-2">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <Image
+                    src="/logo-small-dark.jpg"
+                    height={24}
+                    width={24}
+                    alt="Sessionly AI"
+                    className="object-cover rounded"
+                  />
+                </div>
+                <div className="grid flex-1 text-left leading-tight overflow-hidden">
+                  <span className="text-xl font-bold text-neutral-400 dark:text-[#9098A0] truncate transition-all duration-200 ease-in-out">
+                    Sessionly AI
+                  </span>
+                </div>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <div className="px-4 py-2">
         <Separator className="text-gray-500" />
       </div>
+
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -79,19 +101,26 @@ const DashboardSidebar = () => {
                   <SidebarMenuButton
                     asChild
                     className={cn(
-                      "py-5  hover:bg-[#A0A8AF]/20 dark:hover:bg-main-100/10",
+                      "py-5 hover:bg-[#A0A8AF]/20 dark:hover:bg-main-100/10 transition-colors duration-200",
                       pathname === item.href &&
-                        "!bg-main-100/10 dark:!bg-main-100/40 ",
+                        "!bg-main-100/10 dark:!bg-main-100/40",
                     )}
                     isActive={pathname === item.href}
+                    tooltip={item.label}
                   >
                     <Link href={item.href}>
                       <item.icon
-                        className={`size-10 mr-2 text-gray-500 dark:text-[#A0A8AF] ${pathname === item.href ? "text-foreground" : ""}`}
+                        className={cn(
+                          "size-5 text-gray-500 dark:text-[#A0A8AF] transition-colors duration-200",
+                          pathname === item.href && "text-foreground",
+                        )}
                       />
                       <span
-                        className={`"text-sm font-medium text-gray-500 dark:text-[#A0A8AF] tracking-tight 
-                           ${pathname === item.href ? "text-foreground !font-bold" : ""}`}
+                        className={cn(
+                          "text-sm font-medium text-gray-500 dark:text-[#A0A8AF] tracking-tight transition-colors duration-200",
+                          pathname === item.href &&
+                            "text-foreground !font-bold",
+                        )}
                       >
                         {item.label}
                       </span>
@@ -102,9 +131,11 @@ const DashboardSidebar = () => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
         <div className="px-4 py-2">
           <Separator className="text-gray-500" />
         </div>
+
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -113,19 +144,26 @@ const DashboardSidebar = () => {
                   <SidebarMenuButton
                     asChild
                     className={cn(
-                      "py-5  hover:bg-[#A0A8AF]/20 dark:hover:bg-main-100/10",
+                      "py-5 hover:bg-[#A0A8AF]/20 dark:hover:bg-main-100/10 transition-colors duration-200",
                       pathname === item.href &&
-                        "!bg-main-100/10 dark:!bg-main-100/40 ",
+                        "!bg-main-100/10 dark:!bg-main-100/40",
                     )}
                     isActive={pathname === item.href}
+                    tooltip={item.label}
                   >
                     <Link href={item.href}>
                       <item.icon
-                        className={`size-10 mr-2 text-yellow-700 dark:text-yellow-500 ${pathname === item.href ? "text-foreground" : ""}`}
+                        className={cn(
+                          "size-5 text-yellow-700 dark:text-yellow-500 transition-colors duration-200",
+                          pathname === item.href && "text-foreground",
+                        )}
                       />
                       <span
-                        className={`"text-sm font-medium text-yellow-700 dark:text-yellow-500 tracking-tight 
-                           ${pathname === item.href ? "text-foreground !font-bold" : ""}`}
+                        className={cn(
+                          "text-sm font-medium text-yellow-700 dark:text-yellow-500 tracking-tight transition-colors duration-200",
+                          pathname === item.href &&
+                            "text-foreground !font-bold",
+                        )}
                       >
                         {item.label}
                       </span>
@@ -137,10 +175,14 @@ const DashboardSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="text-white">
+
+      <SidebarFooter>
         <DashboardUserButton />
       </SidebarFooter>
+
+      <SidebarRail />
     </Sidebar>
   );
 };
+
 export default DashboardSidebar;
