@@ -146,6 +146,7 @@ const SignInView = () => {
                           </FormLabel>
                           <FormControl>
                             <Input
+                              disabled={pending}
                               type="email"
                               placeholder="Email address"
                               className="h-11 bg-white/50 dark:bg-slate-800/50 border-slate-200/60 dark:border-slate-700/60 backdrop-blur-sm focus:border-indigo-400 dark:focus:border-gray-500 focus:ring-indigo-400/20 transition-all duration-200"
@@ -168,6 +169,7 @@ const SignInView = () => {
                           <FormControl>
                             <div className="relative">
                               <Input
+                                disabled={pending}
                                 type={showPassword ? "text" : "password"}
                                 placeholder="••••••••"
                                 className="h-11 pr-12 bg-white/50 dark:bg-slate-800/50 border-slate-200/60 dark:border-slate-700/60 backdrop-blur-sm focus:border-indigo-400 dark:focus:border-gray-500 focus:ring-indigo-400/20 transition-all duration-200"
@@ -207,6 +209,7 @@ const SignInView = () => {
                           <FormControl>
                             <Checkbox
                               checked={field.value}
+                              disabled={pending}
                               onCheckedChange={field.onChange}
                               className="mt-0.5 data-[state=checked]:bg-gray-500 data-[state=checked]:border-gray-500 dark:data-[state=checked]:bg-gray-600 dark:data-[state=checked]:border-gray-600"
                             />
@@ -219,6 +222,7 @@ const SignInView = () => {
                     />
 
                     <button
+                      disabled={pending}
                       type="button"
                       onClick={handleForgotPassword}
                       className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 font-medium underline underline-offset-2 hover:underline-offset-4 transition-all duration-200 cursor-pointer"
