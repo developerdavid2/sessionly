@@ -4,6 +4,7 @@ import React from "react";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const HomeView = () => {
   const { data: session, isPending } = authClient.useSession();
@@ -20,6 +21,10 @@ const HomeView = () => {
 
   return (
     <div className="flex flex-col p-4 gap-y-4">
+      {/* Mode Toggle */}
+      <div className="absolute top-6 right-6 z-50">
+        <ModeToggle />
+      </div>
       <p>Logged in as {session.user.name}</p>
       <Button
         className="w-fit"

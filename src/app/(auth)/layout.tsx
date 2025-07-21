@@ -1,5 +1,4 @@
 import React from "react";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 
 interface AuthenticationLayoutProps {
   children: React.ReactNode;
@@ -45,11 +44,6 @@ const AuthenticationLayout = ({ children }: AuthenticationLayoutProps) => {
       {/*<div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-indigo-400/10 to-purple-600/10 rounded-full blur-3xl animate-pulse delay-1000" />*/}
 
       <div className="relative flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
-        {/* Mode Toggle */}
-        <div className="absolute top-6 right-6 z-50">
-          <ModeToggle />
-        </div>
-
         {/* Embossed Container */}
         <div className="relative w-full max-w-sm md:max-w-4xl">
           {/* Embossed Shadow Effect */}
@@ -57,11 +51,11 @@ const AuthenticationLayout = ({ children }: AuthenticationLayoutProps) => {
           {/*<div className="absolute inset-0 bg-gradient-to-tl from-black/5 to-transparent dark:from-black/20 dark:to-transparent rounded-2xl transform -translate-x-1 -translate-y-1 bg-red-800" />*/}
 
           {/* Main Container */}
-          <div className="relative bg-white/80 dark:bg-slate-900/20 backdrop-blur-xl rounded-2xl border border-white/20 dark:border-slate-700/30 shadow-2xl shadow-main-300/10">
+          <div className="relative bg-white/80 dark:bg-slate-900/20 backdrop-blur-xl rounded-2xl border border-white/20 dark:border-slate-700/30 shadow-md shadow-gray-100/5">
             {children}
           </div>
         </div>
-        <div className="mt-10 text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
+        <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4 pt-5">
           By clicking continue, you agree to our{" "}
           <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
         </div>
