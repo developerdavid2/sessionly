@@ -1,45 +1,15 @@
 "use client";
 
 import React from "react";
-import { authClient } from "@/lib/auth-client";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+
+import { useTRPC } from "@/trpc/client";
+import { useQuery } from "@tanstack/react-query";
 
 const HomeView = () => {
-  const { data: session, isPending } = authClient.useSession();
-  const router = useRouter();
+  const trpc = useTRPC();
+  const { data } = useQuery(trpc.hello.queryOptions({ text: "Jacobs David" }));
 
-  if (isPending) {
-    return <p>Loading...</p>;
-  }
-
-  if (!session) {
-    router.push("/sign-in");
-    return null;
-  }
-
-  return (
-    <div className="flex flex-col p-4 gap-y-4">
-      {/* Mode Toggle */}
-      <div className="absolute top-6 right-6 z-50">
-        <ModeToggle />
-      </div>
-      <p>Logged in as {session.user.name}</p>
-      <Button
-        className="w-fit"
-        onClick={() =>
-          authClient.signOut({
-            fetchOptions: {
-              onSuccess: () => router.push("/sign-in"),
-            },
-          })
-        }
-      >
-        Sign Out
-      </Button>
-    </div>
-  );
+  return <div className="flex flex-col p-4 gap-y-4">{data?.greeting}</div>;
 };
 
 export default HomeView;
