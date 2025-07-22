@@ -29,7 +29,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const formSchema = z
   .object({
-    email: z.email(),
+    email: z.string().email(),
     password: z.string().min(1, "Password is required"),
     rememberMe: z.boolean().default(false),
   })
