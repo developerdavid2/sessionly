@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import DashboardCommand from "@/modules/dashboard/ui/components/dashboard-command";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const DashboardNavbar = () => {
   const [openCommand, setOpenCommand] = useState(false);
@@ -44,6 +45,7 @@ const DashboardNavbar = () => {
             <span className="text-xs">&#8984;</span>K
           </kbd>
         </Button>
+        <ModeToggle />
       </nav>
     </>
   );
