@@ -132,3 +132,10 @@
     background-image: linear-gradient(to right, #10091a 0%, #131923 60%, #06101e 100%);
   }
 }
+
+
+@layer base {
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
