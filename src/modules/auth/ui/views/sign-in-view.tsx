@@ -23,7 +23,6 @@ import { useRouter } from "next/navigation";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { OctagonAlertIcon, Eye, EyeOff } from "lucide-react";
 import Logo from "@/components/ui/logo";
-import AuthView from "@/modules/auth/ui/views/auth-view";
 import Link from "next/link";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
@@ -171,7 +170,7 @@ const SignInView = () => {
                               <Input
                                 disabled={pending}
                                 type={showPassword ? "text" : "password"}
-                                placeholder="••••••••"
+                                placeholder="*******"
                                 className="h-11 pr-12 bg-white/50 dark:bg-slate-800/50 border-slate-200/60 dark:border-slate-700/60 backdrop-blur-sm focus:border-indigo-400 dark:focus:border-gray-500 focus:ring-indigo-400/20 transition-all duration-200"
                                 {...field}
                               />
@@ -315,8 +314,6 @@ const SignInView = () => {
               </form>
             </Form>
           </div>
-
-          <AuthView />
         </CardContent>
       </Card>
     </div>
