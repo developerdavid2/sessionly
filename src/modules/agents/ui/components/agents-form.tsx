@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AgentGetOne } from "@/modules/agents/types";
 import { useTRPC } from "@/trpc/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -23,20 +23,42 @@ interface AgentsFormProps {
   onSuccess?: () => void;
   onCancel?: () => void;
   initialValues?: AgentGetOne;
+  onPendingChange?: (isPending: boolean) => void;
 }
+
 const AgentsForm = ({
   onSuccess,
   onCancel,
   initialValues,
+  onPendingChange,
 }: AgentsFormProps) => {
   const trpc = useTRPC();
-
   const queryClient = useQueryClient();
 
   const createAgent = useMutation(
     trpc.agents.create.mutationOptions({
-      onSuccess: () => {
-        queryClient.invalidateQueries(trpc.agents.getMany.queryOptions({}));
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(
+          trpc.agents.getMany.queryOptions({}),
+        );
+        toast.success("Agent created successfully");
+
+        onSuccess?.();
+      },
+      onError: (error) => {
+        toast.error(error.message);
+        //TODO: Check if error code is "FORBIDDEN", redirect to "/upgrade
+      },
+    }),
+  );
+
+  const updateAgent = useMutation(
+    trpc.agents.update.mutationOptions({
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(
+          trpc.agents.getMany.queryOptions({}),
+        );
+        toast.success("Agent updated successfully");
 
         if (initialValues?.id) {
           queryClient.invalidateQueries(
@@ -48,7 +70,6 @@ const AgentsForm = ({
       },
       onError: (error) => {
         toast.error(error.message);
-
         //TODO: Check if error code is "FORBIDDEN", redirect to "/upgrade
       },
     }),
@@ -65,13 +86,24 @@ const AgentsForm = ({
   });
 
   const isEdit = !!initialValues?.id;
-  const isPending = createAgent.isPending;
+  const isPending = createAgent.isPending || updateAgent.isPending;
+
+  // Notify parent component when pending state changes
+  useEffect(() => {
+    onPendingChange?.(isPending);
+  }, [isPending, onPendingChange]);
 
   const onSubmit = (values: FormSchema) => {
     if (isEdit) {
-      console.log("TODO: updateAgent");
+      updateAgent.mutate({ ...values, id: initialValues!.id });
     } else {
       createAgent.mutate(values);
+    }
+  };
+
+  const handleCancel = () => {
+    if (!isPending) {
+      onCancel?.();
     }
   };
 
@@ -98,7 +130,11 @@ const AgentsForm = ({
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="e.g Math tutor" />
+                <Input
+                  {...field}
+                  placeholder="e.g Math tutor"
+                  disabled={isPending}
+                />
               </FormControl>
             </FormItem>
           )}
@@ -113,19 +149,21 @@ const AgentsForm = ({
               <FormControl>
                 <Input
                   {...field}
-                  placeholder="e.g You are a helpfu; math assitant that can answer questions and help with assignments"
+                  placeholder="e.g You are a helpful math assistant that can answer questions and help with assignments"
+                  disabled={isPending}
                 />
               </FormControl>
             </FormItem>
           )}
         />
+
         <div className="flex items-center justify-end gap-x-2">
           {onCancel && (
             <Button
               variant="ghost"
               disabled={isPending}
               type="button"
-              onClick={() => onCancel()}
+              onClick={handleCancel}
             >
               Cancel
             </Button>
@@ -139,4 +177,5 @@ const AgentsForm = ({
     </Form>
   );
 };
+
 export default AgentsForm;

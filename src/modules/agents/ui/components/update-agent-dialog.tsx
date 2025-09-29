@@ -1,26 +1,32 @@
 import React, { useState } from "react";
 import ResponsiveDialog from "@/components/responsive-dialog";
 import AgentsForm from "@/modules/agents/ui/components/agents-form";
+import { AgentGetOne } from "@/modules/agents/types";
 
-interface NewAgentDialogProps {
+interface UpdateAgentDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  initialValues: AgentGetOne;
 }
 
-const NewAgentDialog = ({ open, onOpenChange }: NewAgentDialogProps) => {
+const UpdateAgentDialog = ({
+  open,
+  onOpenChange,
+  initialValues,
+}: UpdateAgentDialogProps) => {
   const [isPending, setIsPending] = useState(false);
 
-  const handleOpenChange = (newOpen: boolean) => {
+  const handleOpenChange = (updateOpen: boolean) => {
     // Prevent closing if form is submitting
     if (!isPending) {
-      onOpenChange(newOpen);
+      onOpenChange(updateOpen);
     }
   };
 
   return (
     <ResponsiveDialog
-      title="New Agent"
-      description="Create a new agent"
+      title="Edit Agent"
+      description="Edit the agent details"
       open={open}
       onOpenChange={handleOpenChange}
     >
@@ -35,9 +41,10 @@ const NewAgentDialog = ({ open, onOpenChange }: NewAgentDialogProps) => {
           }
         }}
         onPendingChange={setIsPending}
+        initialValues={initialValues}
       />
     </ResponsiveDialog>
   );
 };
 
-export default NewAgentDialog;
+export default UpdateAgentDialog;
