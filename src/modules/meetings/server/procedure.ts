@@ -12,8 +12,43 @@ import {
 import { TRPCError } from "@trpc/server";
 import { meetings } from "@/db/schema";
 
+import {
+  meetingsInsertSchema,
+  meetingsUpdateSchema,
+} from "@/modules/meetings/schemas";
+
 export const meetingRouter = createTRPCRouter({
-  //TODO: Add a procedure to create an agent
+  //CREATE A NEW MEETING
+  create: protectedProcedure
+    .input(meetingsInsertSchema)
+    .mutation(async ({ input, ctx }) => {
+      const [createdMeeting] = await db
+        .insert(meetings)
+        .values({ ...input, userId: ctx.auth.user.id })
+        .returning();
+
+      return createdMeeting;
+    }),
+  //UPDATE AN MEETINGS BY ID
+  update: protectedProcedure
+    .input(meetingsUpdateSchema)
+    .mutation(async ({ input, ctx }) => {
+      const [updatedMeeting] = await db
+        .update(meetings)
+        .set(input)
+        .where(
+          and(eq(meetings.id, input.id), eq(meetings.userId, ctx.auth.user.id)),
+        )
+        .returning();
+      if (!updatedMeeting) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Meeting not found",
+        });
+      }
+
+      return updatedMeeting;
+    }),
 
   getOne: protectedProcedure
     .input(
@@ -32,7 +67,10 @@ export const meetingRouter = createTRPCRouter({
         );
 
       if (!existingMeeting) {
-        throw new TRPCError({ code: "NOT_FOUND", message: "Agent not found" });
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Meeting not found",
+        });
       }
 
       return existingMeeting;

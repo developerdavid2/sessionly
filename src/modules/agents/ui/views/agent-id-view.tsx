@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { useTRPC } from "@/trpc/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import AgentDetailSkeleton from "@/components/agent-id-loading-state";
-import AgentDetailError from "@/components/agent-id-error-state";
+import AgentDetailSkeleton from "@/modules/agents/ui/views/agent-id-loading-state";
+import AgentDetailError from "@/modules/agents/ui/views/agent-id-error-state";
 import AgentIdViewHeader from "@/modules/agents/ui/components/agent-id-view-header";
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Badge } from "@/components/ui/badge";
@@ -25,8 +25,6 @@ export const AgentIdView = ({ agentId }: Props) => {
   const { data } = useSuspenseQuery(
     trpc.agents.getOne.queryOptions({ id: agentId }),
   );
-  console.log("Data", data.id);
-  console.log("AgentId", agentId);
 
   return (
     <>

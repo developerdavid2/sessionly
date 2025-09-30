@@ -120,7 +120,7 @@ const AgentsForm = ({
         <GeneratedAvatar
           seed={form.watch("name")}
           variant="botttsNeutral"
-          className="border size-16"
+          className="border size-16 flex items-center justify-center mx-auto md:mx-0"
         />
 
         <FormField

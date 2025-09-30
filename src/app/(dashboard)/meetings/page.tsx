@@ -7,6 +7,7 @@ import {
   MeetingsViewError,
   MeetingsViewLoading,
 } from "@/modules/meetings/ui/views/meetings-view";
+import MeetingsListHeader from "@/modules/meetings/ui/components/meetings-list-header";
 
 const Page = () => {
   const queryClient = getQueryClient();
@@ -14,6 +15,7 @@ const Page = () => {
 
   return (
     <>
+      <MeetingsListHeader />
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Suspense fallback={<MeetingsViewLoading />}>
           <ErrorBoundary fallback={<MeetingsViewError />}>
