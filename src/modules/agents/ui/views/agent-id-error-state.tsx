@@ -10,7 +10,7 @@ import {
   Server,
   FileX,
 } from "lucide-react";
-import NeumorphicButton from "./neumorphic-button";
+import NeumorphicButton from "../../../../components/neumorphic-button";
 
 type ErrorType = "network" | "server" | "not-found" | "generic";
 
