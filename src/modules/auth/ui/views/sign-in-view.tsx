@@ -25,12 +25,13 @@ import { OctagonAlertIcon, Eye, EyeOff } from "lucide-react";
 import Logo from "@/components/ui/logo";
 import Link from "next/link";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import AuthView from "@/modules/auth/ui/views/auth-view";
 
 const formSchema = z
   .object({
     email: z.string().email(),
     password: z.string().min(1, "Password is required"),
-    rememberMe: z.boolean().default(false),
+    rememberMe: z.boolean().default(false).nullish(),
   })
   .strict();
 
@@ -41,6 +42,15 @@ const SignInView = () => {
   const [pending, setPending] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      rememberMe: false,
+    },
+  });
 
   const onSignIn: SubmitHandler<FormSchema> = async (data) => {
     setPending(true);
@@ -100,15 +110,6 @@ const SignInView = () => {
   const handleForgotPassword = () => {
     console.log("Forgot password clicked - redirect to reset password page");
   };
-
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      rememberMe: false,
-    },
-  });
 
   return (
     <div className="flex flex-col gap-6 shadow-2xl shadow-main-300/30 rounded-2xl">
@@ -207,7 +208,7 @@ const SignInView = () => {
                         <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                           <FormControl>
                             <Checkbox
-                              checked={field.value}
+                              checked={field.value ?? false}
                               disabled={pending}
                               onCheckedChange={field.onChange}
                               className="mt-0.5 data-[state=checked]:bg-gray-500 data-[state=checked]:border-gray-500 dark:data-[state=checked]:bg-gray-600 dark:data-[state=checked]:border-gray-600"
@@ -314,6 +315,8 @@ const SignInView = () => {
               </form>
             </Form>
           </div>
+          {/* Auth View Section */}
+          <AuthView />
         </CardContent>
       </Card>
     </div>
