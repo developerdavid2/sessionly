@@ -7,7 +7,7 @@ import {
   MeetingsViewError,
   MeetingsViewLoading,
 } from "@/modules/meetings/ui/views/meetings-view";
-import MeetingsListHeader from "@/modules/meetings/ui/components/meetings-list-header";
+import { MeetingsListHeader } from "@/modules/meetings/ui/components/meetings-list-header";
 import { SearchParams } from "nuqs/server";
 import { loadSearchParams } from "@/modules/meetings/params";
 

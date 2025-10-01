@@ -8,8 +8,16 @@ import {
 } from "lucide-react";
 import { useMeetingsFilters } from "@/modules/meetings/hooks/use-meetings-filters";
 import { CommandSelect } from "@/components/command-select";
+import { DEFAULT_PAGE } from "@/constants";
 
 const options = [
+  {
+    id: "all",
+    value: "",
+    children: (
+      <div className="flex items-center gap-x-2 capitalize">All Statuses</div>
+    ),
+  },
   {
     id: MeetingStatus.Upcoming,
     value: MeetingStatus.Upcoming,
@@ -70,7 +78,12 @@ export const StatusFilter = () => {
       placeholder="Status"
       className="h-9"
       options={options}
-      onSelect={(value) => setFilters({ status: value as MeetingStatus })}
+      onSelect={(value) =>
+        setFilters({
+          status: value === "" ? null : (value as MeetingStatus),
+          page: DEFAULT_PAGE, // Reset to first page when filter changes
+        })
+      }
       value={filters.status ?? ""}
     />
   );
