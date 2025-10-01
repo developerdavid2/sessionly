@@ -192,6 +192,7 @@ const MeetingsForm = ({
                     type="button"
                     className="text-primary hover:underline"
                     onClick={() => setOpenNewAgentDialog(true)}
+                    disabled={isPending}
                   >
                     Create new agent
                   </button>

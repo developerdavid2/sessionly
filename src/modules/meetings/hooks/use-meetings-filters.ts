@@ -12,20 +12,21 @@ export const useMeetingsFilters = () => {
     {
       search: parseAsString
         .withDefault("")
-        .withOptions({ clearOnDefault: true }),
+        .withOptions({ clearOnDefault: true, history: "replace" }),
       page: parseAsInteger
         .withDefault(DEFAULT_PAGE)
-        .withOptions({ clearOnDefault: true }),
-      status: parseAsStringEnum(Object.values(MeetingStatus)),
+        .withOptions({ clearOnDefault: true, history: "replace" }),
+      status: parseAsStringEnum(Object.values(MeetingStatus)).withOptions({
+        history: "replace",
+      }),
       agentId: parseAsString
         .withDefault("")
-        .withOptions({ clearOnDefault: true }),
+        .withOptions({ clearOnDefault: true, history: "replace" }),
     },
     {
-      shallow: false, // This prevents infinite re-renders
-      throttleMs: 50, // Throttle updates
+      shallow: false,
+      throttleMs: 100, // Slightly increase throttle to reduce rapid updates
+      clearOnDefault: true,
     },
   );
 };
-
-// https://localhost:3000/agents?search=hello&page=2 <====> useState({search:'hello', page: 2})

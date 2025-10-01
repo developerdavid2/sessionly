@@ -1,9 +1,4 @@
 import { getQueryClient, trpc } from "@/trpc/server";
-
-interface PageProps {
-  params: Promise<{ agentId: string }>;
-}
-
 import React, { Suspense } from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
@@ -13,9 +8,11 @@ import {
   AgentIdViewLoading,
 } from "@/modules/agents/ui/views/agent-id-view";
 
+interface PageProps {
+  params: Promise<{ agentId: string }>;
+}
 const Page = async ({ params }: PageProps) => {
   const { agentId } = await params;
-  console.log("AgentId page called with:", agentId); // Add this line
 
   const queryClient = getQueryClient();
   void queryClient.prefetchQuery(

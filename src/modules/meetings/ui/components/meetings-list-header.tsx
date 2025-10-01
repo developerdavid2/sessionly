@@ -11,7 +11,7 @@ import { useMeetingsFilters } from "@/modules/meetings/hooks/use-meetings-filter
 import { DEFAULT_PAGE } from "@/constants";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-const MeetingsListHeader = () => {
+export const MeetingsListHeader = () => {
   const [filters, setFilters] = useMeetingsFilters();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -19,6 +19,7 @@ const MeetingsListHeader = () => {
     !!filters.search || !!filters.status || !!filters.agentId;
 
   const onClearFilters = () => {
+    // Use null for status to properly clear the enum filter
     setFilters({
       status: null,
       agentId: "",
@@ -56,4 +57,3 @@ const MeetingsListHeader = () => {
     </>
   );
 };
-export default MeetingsListHeader;
