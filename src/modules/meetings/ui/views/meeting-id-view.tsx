@@ -8,6 +8,10 @@ import MeetingDetailError from "@/modules/meetings/ui/views/meeting-id-error-sta
 import MeetingIdViewHeader from "@/modules/meetings/ui/components/meeting-id-view-header";
 import { DeleteMeetingDialog } from "@/modules/meetings/ui/components/delete-meeting-dialog";
 import { UpdateMeetingDialog } from "@/modules/meetings/ui/components/update-meeting-dialog";
+import { UpcomingState } from "@/modules/meetings/ui/components/upcoming-state";
+import { ActiveState } from "@/modules/meetings/ui/components/active-state";
+import { CancelledState } from "@/modules/meetings/ui/components/cancelled-state";
+import { ProcessingState } from "@/modules/meetings/ui/components/processing-state";
 
 interface Props {
   meetingId: string;
@@ -22,6 +26,12 @@ export const MeetingIdView = ({ meetingId }: Props) => {
   const { data } = useSuspenseQuery(
     trpc.meetings.getOne.queryOptions({ id: meetingId }),
   );
+
+  const isUpcoming = data.status === "upcoming";
+  const isActive = data.status === "active";
+  const isProcessing = data.status === "processing";
+  const isCompleted = data.status === "completed";
+  const isCancelled = data.status === "cancelled";
 
   return (
     <>
@@ -45,7 +55,17 @@ export const MeetingIdView = ({ meetingId }: Props) => {
 
         <div className="bg-background rounded-lg border">
           <div className="px-4 py-5 gap-y-5 flex flex-col col-span-5">
-            {JSON.stringify(data, null, 2)}
+            {isUpcoming && (
+              <UpcomingState
+                meetingId={meetingId}
+                onCancelMeeting={() => {}}
+                isCancelling={false}
+              />
+            )}
+            {isActive && <ActiveState meetingId={meetingId} />}
+            {isProcessing && <ProcessingState />}
+            {isCompleted && <div>Completed</div>}
+            {isCancelled && <CancelledState />}
           </div>
         </div>
       </div>
