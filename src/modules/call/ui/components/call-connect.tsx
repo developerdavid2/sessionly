@@ -34,52 +34,48 @@ export const CallConnect = ({
   );
 
   const [client, setClient] = useState<StreamVideoClient>();
+
+  useEffect(() => {
+    const _client = new StreamVideoClient({
+      apiKey: process.env.NEXT_PUBLIC_STREAM_VIDEO_API_KEY!,
+      user: {
+        id: userId,
+        name: userName,
+        image: userImage,
+      },
+      tokenProvider: generateToken,
+    });
+
+    setClient(_client);
+
+    return () => {
+      _client.disconnectUser();
+      setClient(undefined);
+    };
+  }, [userId, userName, userImage, generateToken]);
+
   const [call, setCall] = useState<Call>();
 
   useEffect(() => {
-    const initializeCall = async () => {
-      const _client = new StreamVideoClient({
-        apiKey: process.env.NEXT_PUBLIC_STREAM_VIDEO_API_KEY!,
-        user: {
-          id: userId,
-          name: userName,
-          image: userImage,
-        },
-        tokenProvider: generateToken,
-      });
-
-      setClient(_client);
-
-      // Create the call
-      const _call = _client.call("default", meetingId);
-
-      try {
-        // Ensure the call exists on Stream servers
-        await _call.getOrCreate();
-
-        _call.camera.disable();
-        _call.microphone.disable();
-        setCall(_call);
-      } catch (error) {
-        console.error("Failed to create call:", error);
-      }
-    };
-
-    initializeCall();
+    if (!client) return;
+    const _call = client.call("default", meetingId);
+    _call.camera.disable();
+    _call.microphone.disable();
+    setCall(_call);
 
     return () => {
-      if (call?.state.callingState !== CallingState.LEFT) {
-        call?.leave();
-        call?.endCall();
+      if (_call.state.callingState !== CallingState.LEFT) {
+        _call.leave();
+        _call.endCall();
+        setCall(undefined);
       }
-      client?.disconnectUser();
     };
-  }, [userId, userName, userImage, generateToken, meetingId]);
+  }, [client, meetingId]);
 
   if (!client || !call) {
     return (
       <div className="flex h-screen items-center justify-center bg-radial from-sidebar-accent to-sidebar">
-        <LoaderIcon className="size-6 animate-spin" />
+        <LoaderIcon className="size-10 animate-spin" />
       </div>
     );
   }
