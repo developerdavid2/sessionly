@@ -87,7 +87,7 @@ export const meetingRouter = createTRPCRouter({
         console.log("✅ Agent user upserted:", existingAgent.userId);
 
         const call = streamVideo.video.call("default", createdMeeting.id);
-        await call.getOrCreate({
+        await call.create({
           data: {
             created_by_id: ctx.auth.user.id,
             custom: {
@@ -96,7 +96,9 @@ export const meetingRouter = createTRPCRouter({
             },
             settings_override: {
               transcription: {
+                language: "en",
                 mode: "available",
+                closed_caption_mode: "auto-on",
               },
               recording: {
                 mode: "available",
@@ -105,12 +107,6 @@ export const meetingRouter = createTRPCRouter({
               },
             },
           },
-        });
-
-        console.log("✅ Stream call created with custom data:", {
-          callId: createdMeeting.id,
-          meetingId: createdMeeting.id,
-          meetingName: createdMeeting.name,
         });
 
         return createdMeeting;

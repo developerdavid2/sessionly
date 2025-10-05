@@ -97,8 +97,6 @@ export async function POST(req: NextRequest) {
     const event = payload as CallSessionStartedEvent;
     const meetingId = event.call?.custom?.meetingId;
 
-    console.log("🚀 Call session started for meeting:", meetingId);
-
     if (!meetingId) {
       return NextResponse.json(
         { error: "Missing meeting ID in call custom data" },
@@ -126,19 +124,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log(
-      "✅ Meeting found:",
-      existingMeeting.id,
-      "Status:",
-      existingMeeting.status,
-    );
-
     await db
       .update(meetings)
       .set({ status: "active", startedAt: new Date() })
       .where(eq(meetings.id, existingMeeting.id));
-
-    console.log("✅ Meeting status updated to active");
 
     const [existingAgent] = await db
       .select()
@@ -146,39 +135,22 @@ export async function POST(req: NextRequest) {
       .where(eq(agents.id, existingMeeting.agentId));
 
     if (!existingAgent) {
-      console.error("❌ Agent not found:", existingMeeting.agentId);
       return NextResponse.json({ error: "Agent not found" }, { status: 404 });
     }
-
-    console.log("✅ Agent found:", {
-      agentId: existingAgent.id,
-      userId: existingAgent.userId,
-      name: existingAgent.name,
-    });
 
     const call = streamVideo.video.call("default", meetingId);
 
     try {
-      console.log("🤖 Connecting OpenAI agent to call...");
-
       const realtimeClient = await streamVideo.video.connectOpenAi({
         call,
         openAiApiKey: process.env.OPENAI_API_KEY!,
         agentUserId: existingAgent.id,
       });
 
-      console.log("✅ OpenAI client connected");
-
       realtimeClient.updateSession({
         instructions: existingAgent.instructions,
       });
-
-      console.log("✅ Agent session updated with instructions");
-      console.log(
-        `✅ OpenAI agent ${existingAgent.userId} successfully connected to call ${meetingId}`,
-      );
     } catch (error) {
-      console.error("❌ Failed to connect OpenAI agent:", error);
       return NextResponse.json(
         { error: "Failed to connect agent to call" },
         { status: 500 },
