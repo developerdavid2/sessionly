@@ -70,10 +70,6 @@ export const agents = pgTable("agents", {
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
   instructions: text("instructions").notNull(),
-
-  // Add Vapi assistant ID
-  vapiAssistantId: text("vapi_assistant_id"),
-
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
@@ -103,10 +99,6 @@ export const meetings = pgTable("meetings", {
   transcriptUrl: text("transcript_url"),
   recordingUrl: text("recording_url"),
   summary: text("summary"),
-
-  // Add Vapi call ID
-  vapiCallId: text("vapi_call_id"),
-
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

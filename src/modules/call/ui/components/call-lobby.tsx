@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import {
   DefaultVideoPlaceholder,
@@ -12,7 +12,8 @@ import { authClient } from "@/lib/auth-client";
 import { generateAvatarUri } from "@/lib/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { LogInIcon } from "lucide-react";
+import { LogInIcon, Loader2 } from "lucide-react";
+
 interface Props {
   onJoin: () => void;
 }
@@ -48,11 +49,22 @@ const AllowBrowserPermissions = () => {
 
 export const CallLobby = ({ onJoin }: Props) => {
   const { useCameraState, useMicrophoneState } = useCallStateHooks();
+  const [isJoining, setIsJoining] = useState(false);
 
   const { hasBrowserPermission: hasMicPermission } = useMicrophoneState();
   const { hasBrowserPermission: hasCameraPermission } = useCameraState();
 
   const hasBrowserMediaPermissions = hasMicPermission && hasCameraPermission;
+
+  const handleJoin = async () => {
+    setIsJoining(true);
+    try {
+      await onJoin();
+    } catch (error) {
+      console.error("Failed to join:", error);
+      setIsJoining(false);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-full bg-radial from-sidebar-accent to-sidebar">
@@ -74,12 +86,23 @@ export const CallLobby = ({ onJoin }: Props) => {
             <ToggleVideoPreviewButton />
           </div>
           <div className="flex gap-x-2 justify-between w-full">
-            <Button asChild variant="ghost">
-              <Link href="/meetings">Cancel</Link>
+            <Button asChild variant="ghost" disabled={isJoining}>
+              <Link href="/meetings" aria-disabled={isJoining}>
+                Cancel
+              </Link>
             </Button>
-            <Button onClick={onJoin}>
-              <LogInIcon />
-              Join Call
+            <Button onClick={handleJoin} disabled={isJoining}>
+              {isJoining ? (
+                <>
+                  <Loader2 className="animate-spin" />
+                  Joining...
+                </>
+              ) : (
+                <>
+                  <LogInIcon />
+                  Join Call
+                </>
+              )}
             </Button>
           </div>
         </div>
