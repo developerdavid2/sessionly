@@ -1,6 +1,5 @@
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { db } from "@/db";
-
 import z from "zod";
 import { and, count, desc, eq, getTableColumns, ilike, sql } from "drizzle-orm";
 import {
@@ -11,7 +10,6 @@ import {
 } from "@/constants";
 import { TRPCError } from "@trpc/server";
 import { agents, meetings } from "@/db/schema";
-
 import {
   meetingsInsertSchema,
   meetingsUpdateSchema,
@@ -36,8 +34,9 @@ export const meetingRouter = createTRPCRouter({
       },
     ]);
 
-    const expirationTime = Math.floor(Date.now() / 1000) + 3600; // Token valid for 1 hour
+    const expirationTime = Math.floor(Date.now() / 1000) + 3600;
     const issuedAt = Math.floor(Date.now() / 1000) - 60;
+
     const token = streamVideo.generateUserToken({
       user_id: ctx.auth.user.id,
       exp: expirationTime,
@@ -47,13 +46,9 @@ export const meetingRouter = createTRPCRouter({
     return token;
   }),
 
-  //CREATE A NEW MEETING
-  // CORRECTED create procedure - The issue is the order of operations
-
   create: protectedProcedure
     .input(meetingsInsertSchema)
     .mutation(async ({ input, ctx }) => {
-      // 1. Verify agent exists FIRST
       const [existingAgent] = await db
         .select()
         .from(agents)
@@ -66,16 +61,17 @@ export const meetingRouter = createTRPCRouter({
         });
       }
 
-      // 2. Create meeting in database
       const [createdMeeting] = await db
         .insert(meetings)
-        .values({ ...input, userId: ctx.auth.user.id })
+        .values({
+          ...input,
+          userId: ctx.auth.user.id,
+        })
         .returning();
 
       console.log("✅ Meeting created in DB:", createdMeeting.id);
 
       try {
-        // 3. Upsert agent user in Stream
         await streamVideo.upsertUsers([
           {
             id: existingAgent.id,
@@ -90,9 +86,7 @@ export const meetingRouter = createTRPCRouter({
 
         console.log("✅ Agent user upserted:", existingAgent.userId);
 
-        // 4. Create the call - KEY FIX: Use getOrCreate() instead of create()
         const call = streamVideo.video.call("default", createdMeeting.id);
-
         await call.getOrCreate({
           data: {
             created_by_id: ctx.auth.user.id,
@@ -123,7 +117,6 @@ export const meetingRouter = createTRPCRouter({
       } catch (error) {
         console.error("❌ Failed to create Stream call:", error);
 
-        // Rollback: Delete the meeting from DB
         await db.delete(meetings).where(eq(meetings.id, createdMeeting.id));
 
         throw new TRPCError({
@@ -132,7 +125,7 @@ export const meetingRouter = createTRPCRouter({
         });
       }
     }),
-  //UPDATE A MEETING BY ID
+
   update: protectedProcedure
     .input(meetingsUpdateSchema)
     .mutation(async ({ input, ctx }) => {
@@ -143,6 +136,7 @@ export const meetingRouter = createTRPCRouter({
           and(eq(meetings.id, input.id), eq(meetings.userId, ctx.auth.user.id)),
         )
         .returning();
+
       if (!updatedMeeting) {
         throw new TRPCError({
           code: "NOT_FOUND",
@@ -152,7 +146,7 @@ export const meetingRouter = createTRPCRouter({
 
       return updatedMeeting;
     }),
-  //UPDATE A MEETING BY ID
+
   remove: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input, ctx }) => {
@@ -162,6 +156,7 @@ export const meetingRouter = createTRPCRouter({
           and(eq(meetings.id, input.id), eq(meetings.userId, ctx.auth.user.id)),
         )
         .returning();
+
       if (!removedMeeting) {
         throw new TRPCError({
           code: "NOT_FOUND",
@@ -202,7 +197,6 @@ export const meetingRouter = createTRPCRouter({
 
       return existingMeeting;
     }),
-  //TODO: Add a procedure to create an agent
 
   getMany: protectedProcedure
     .input(
@@ -228,6 +222,7 @@ export const meetingRouter = createTRPCRouter({
     )
     .query(async ({ ctx, input }) => {
       const { search, page, pageSize, status, agentId } = input;
+
       const data = await db
         .select({
           ...getTableColumns(meetings),
