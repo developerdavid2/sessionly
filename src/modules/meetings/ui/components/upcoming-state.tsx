@@ -1,7 +1,8 @@
 import EmptyState from "@/components/empty-state";
 import { Button } from "@/components/ui/button";
-import { BanIcon, VideoIcon } from "lucide-react";
+import { BanIcon, VideoIcon, LoaderIcon } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 interface Props {
   meetingId: string;
@@ -14,6 +15,15 @@ export const UpcomingState = ({
   onCancelMeeting,
   isCancelling,
 }: Props) => {
+  const [isStarting, setIsStarting] = useState(false);
+
+  const handleStartMeeting = () => {
+    setIsStarting(true);
+    // Navigation will happen via the Link, state persists during transition
+  };
+
+  const isProcessing = isCancelling || isStarting;
+
   return (
     <div className="bg-background rounded-lg px-4 py-5 flex flex-col gap-y-8 items-center justify-center">
       <EmptyState
@@ -26,16 +36,28 @@ export const UpcomingState = ({
           variant="secondary"
           className="w-full lg:w-auto"
           onClick={onCancelMeeting}
-          disabled={isCancelling}
+          disabled={isProcessing}
         >
           <BanIcon />
           Cancel Meeting
         </Button>
-        <Button asChild className="w-full lg:w-auto" disabled={isCancelling}>
-          <Link href={`/call/${meetingId}`}>
-            <VideoIcon />
-            Start Meeting
-          </Link>
+        <Button
+          asChild={!isStarting}
+          className="w-full lg:w-auto"
+          disabled={isProcessing}
+          onClick={isStarting ? undefined : handleStartMeeting}
+        >
+          {isStarting ? (
+            <>
+              <LoaderIcon className="animate-spin" />
+              Starting...
+            </>
+          ) : (
+            <Link href={`/call/${meetingId}`}>
+              <VideoIcon />
+              Start Meeting
+            </Link>
+          )}
         </Button>
       </div>
     </div>
