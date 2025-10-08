@@ -15,6 +15,8 @@ import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { formatDuration } from "@/lib/utils";
 import Markdown from "react-markdown";
+import { Transcript } from "@/modules/meetings/ui/components/transcript";
+import { ChatProvider } from "@/modules/meetings/ui/components/chat-provider";
 
 interface Props {
   data: MeetingGetOne;
@@ -35,7 +37,7 @@ const CompletedState = ({ data }: Props) => {
                 Summary
               </TabsTrigger>
               <TabsTrigger
-                value="trascript"
+                value="transcript"
                 className="text-muted-foreground rounded-none bg-background data=[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-b-primary data-[state=active]:text-accent-foreground h-full hover:text-accent-foreground"
               >
                 <FileTextIcon />
@@ -58,6 +60,13 @@ const CompletedState = ({ data }: Props) => {
             </TabsList>
           </ScrollArea>
         </div>
+        <TabsContent value="transcript">
+          <Transcript meetingId={data.id} />
+        </TabsContent>
+        <TabsContent value="chat">
+          <ChatProvider meetingId={data.id} meetingName={data.name} />
+        </TabsContent>
+
         <TabsContent value="recording">
           <div className="bg-white rounded-lg border px-4 py-5">
             {data.recordingUrl ? (
