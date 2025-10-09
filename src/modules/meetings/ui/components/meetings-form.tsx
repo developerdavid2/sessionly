@@ -23,6 +23,7 @@ import { CommandSelect } from "@/components/command-select";
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { useDebounce } from "@/hooks/use-debounce";
 import NewAgentDialog from "@/modules/agents/ui/components/new-agent-dialog";
+import { useRouter } from "next/navigation";
 
 interface MeetingsFormProps {
   onSuccess?: (id?: string) => void;
@@ -43,6 +44,7 @@ const MeetingsForm = ({
   const debouncedSearch = useDebounce(agentSearch, 300);
 
   const trpc = useTRPC();
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   // Use regular useQuery with debounced search
@@ -58,6 +60,9 @@ const MeetingsForm = ({
       onSuccess: async (data) => {
         await queryClient.invalidateQueries(
           trpc.meetings.getMany.queryOptions({}),
+        );
+        await queryClient.invalidateQueries(
+          trpc.premium.getFreeUsage.queryOptions({}),
         );
         toast.success("Meeting created successfully");
 
@@ -79,7 +84,7 @@ const MeetingsForm = ({
         toast.success("Meeting updated successfully");
 
         if (initialValues?.id) {
-          queryClient.invalidateQueries(
+          await queryClient.invalidateQueries(
             trpc.meetings.getOne.queryOptions({ id: initialValues.id }),
           );
         }
@@ -88,7 +93,7 @@ const MeetingsForm = ({
       },
       onError: (error) => {
         toast.error(error.message);
-        //TODO: Check if error code is "FORBIDDEN", redirect to "/upgrade
+        if (error.data?.code === "FORBIDDEN") router.push("/upgrade");
       },
     }),
   );
