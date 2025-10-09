@@ -22,6 +22,7 @@ import { usePathname } from "next/navigation";
 import { FaRobot, FaVideo } from "react-icons/fa";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
 import { DashboardUserButton } from "@/modules/dashboard/ui/components/dashboard-user-button";
+import { DashboardTrial } from "@/modules/dashboard/ui/components/dashboard-trial";
 
 const firstSection = [
   {
@@ -177,6 +178,7 @@ const DashboardSidebar = ({
       </SidebarContent>
 
       <SidebarFooter>
+        <DashboardTrial />
         <DashboardUserButton />
       </SidebarFooter>
 

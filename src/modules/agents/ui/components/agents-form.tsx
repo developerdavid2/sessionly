@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface AgentsFormProps {
   onSuccess?: () => void;
@@ -33,6 +34,7 @@ const AgentsForm = ({
   onPendingChange,
 }: AgentsFormProps) => {
   const trpc = useTRPC();
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const createAgent = useMutation(
@@ -41,13 +43,18 @@ const AgentsForm = ({
         await queryClient.invalidateQueries(
           trpc.agents.getMany.queryOptions({}),
         );
+        await queryClient.invalidateQueries(
+          trpc.premium.getFreeUsage.queryOptions({}),
+        );
+
         toast.success("Agent created successfully");
 
         onSuccess?.();
       },
       onError: (error) => {
         toast.error(error.message);
-        //TODO: Check if error code is "FORBIDDEN", redirect to "/upgrade
+
+        if (error.data?.code === "FORBIDDEN") router.push("/upgrade");
       },
     }),
   );
