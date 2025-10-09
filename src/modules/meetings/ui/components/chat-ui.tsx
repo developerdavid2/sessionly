@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useTRPC } from "@/trpc/client";
 import { useMutation } from "@tanstack/react-query";
-import { StreamChannel } from "@stream-io/node-sdk";
+import { Channel as StreamChannel } from "stream-chat";
 import {
   Channel,
   Chat,
+  MessageInput,
   MessageList,
+  Thread,
   useCreateChatClient,
   Window,
 } from "stream-chat-react";
 import LoadingState from "@/components/loading-state";
+
+import "stream-chat-react/dist/css/v2/index.css";
 
 interface ChatUIProps {
   meetingId: string;
@@ -64,10 +68,12 @@ export const ChatUI = ({
       <Chat client={client}>
         <Channel channel={channel}>
           <Window>
-            <div className="flex-1 overflow-y-auto max-h-[calc(100vh-23rem0] border-b">
+            <div className="flex-1 overflow-y-auto max-h-[calc(100vh-23rem)] border-b">
               <MessageList />
             </div>
+            <MessageInput />
           </Window>
+          <Thread />
         </Channel>
       </Chat>
     </div>
