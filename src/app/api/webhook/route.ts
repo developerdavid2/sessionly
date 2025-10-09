@@ -14,8 +14,9 @@ import { agents, meetings } from "@/db/schema";
 import { inngest } from "@/inngest/client";
 import { OpenAI } from "openai";
 import { streamChat } from "@/lib/stream-chat";
-import { ChatCompletionMessageParam } from "openai/client";
+
 import { generateAvatarUri } from "@/lib/avatar";
+import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
 const openaiClient = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
@@ -315,7 +316,9 @@ export async function POST(req: NextRequest) {
       if (!GPTResponseText) {
         return NextResponse.json(
           { error: "No response from GPT" },
-          { status: "ok" },
+          {
+            status: "ok",
+          },
         );
       }
 
@@ -324,11 +327,13 @@ export async function POST(req: NextRequest) {
         variant: "botttsNeutral",
       });
 
-      await streamChat.upsertUsers({
-        id: existingAgent.id,
-        name: existingAgent.name,
-        image: avatarUrl,
-      });
+      await streamChat.upsertUsers([
+        {
+          id: existingAgent.id,
+          name: existingAgent.name,
+          image: avatarUrl,
+        },
+      ]);
 
       await channel.sendMessage({
         text: GPTResponseText,
