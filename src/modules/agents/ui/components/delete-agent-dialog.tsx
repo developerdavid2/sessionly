@@ -41,7 +41,7 @@ const DeleteAgentDialog = ({
           trpc.agents.getMany.queryOptions({}),
         );
         await queryClient.invalidateQueries(
-          trpc.premium.getFreeUsage.queryOptions({}),
+          trpc.premium.getFreeUsage.queryOptions(),
         );
         router.push("/agents");
       },
