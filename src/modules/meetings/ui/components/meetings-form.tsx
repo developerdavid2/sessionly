@@ -62,7 +62,7 @@ const MeetingsForm = ({
           trpc.meetings.getMany.queryOptions({}),
         );
         await queryClient.invalidateQueries(
-          trpc.premium.getFreeUsage.queryOptions({}),
+          trpc.premium.getFreeUsage.queryOptions(),
         );
         toast.success("Meeting created successfully");
 
@@ -70,7 +70,6 @@ const MeetingsForm = ({
       },
       onError: (error) => {
         toast.error(error.message);
-        //TODO: Check if error code is "FORBIDDEN", redirect to "/upgrade
       },
     }),
   );

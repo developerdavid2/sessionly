@@ -314,12 +314,7 @@ export async function POST(req: NextRequest) {
       const GPTResponseText = GPTResponse.choices[0]?.message?.content;
 
       if (!GPTResponseText) {
-        return NextResponse.json(
-          { error: "No response from GPT" },
-          {
-            status: "ok",
-          },
-        );
+        return NextResponse.json({ error: "No response from GPT" });
       }
 
       const avatarUrl = generateAvatarUri({
