@@ -40,7 +40,7 @@ export const DeleteMeetingDialog = ({
           trpc.meetings.getMany.queryOptions({}),
         );
         await queryClient.invalidateQueries(
-          trpc.premium.getFreeUsage.queryOptions({}),
+          trpc.premium.getFreeUsage.queryOptions(),
         );
         router.push("/meetings");
       },

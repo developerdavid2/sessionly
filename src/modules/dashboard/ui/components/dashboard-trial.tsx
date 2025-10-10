@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export const DashboardTrial = () => {
   const trpc = useTRPC();
-  const { data } = useQuery(trpc.premium.getFreeUsage.queryOptions({}));
+  const { data } = useQuery(trpc.premium.getFreeUsage.queryOptions());
 
   if (!data) return null;
 

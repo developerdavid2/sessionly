@@ -11,11 +11,11 @@ import { authClient } from "@/lib/auth-client";
 export const UpgradeView = () => {
   const trpc = useTRPC();
   const { data: products } = useSuspenseQuery(
-    trpc.premium.getProducts.queryOptions({}),
+    trpc.premium.getProducts.queryOptions(),
   );
 
   const { data: currentSubscription } = useSuspenseQuery(
-    trpc.premium.getCurrentSubscription.queryOptions({}),
+    trpc.premium.getCurrentSubscription.queryOptions(),
   );
 
   return (
