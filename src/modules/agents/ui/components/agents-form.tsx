@@ -44,7 +44,7 @@ const AgentsForm = ({
           trpc.agents.getMany.queryOptions({}),
         );
         await queryClient.invalidateQueries(
-          trpc.premium.getFreeUsage.queryOptions({}),
+          trpc.premium.getFreeUsage.queryOptions(),
         );
 
         toast.success("Agent created successfully");
@@ -77,7 +77,6 @@ const AgentsForm = ({
       },
       onError: (error) => {
         toast.error(error.message);
-        //TODO: Check if error code is "FORBIDDEN", redirect to "/upgrade
       },
     }),
   );
