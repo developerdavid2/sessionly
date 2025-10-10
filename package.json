@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "npm rebuild lightningcss --force",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "dev:webhook": "ngrok http --url=strung-bernardo-duodecastyle.ngrok-free.dev 3000"
