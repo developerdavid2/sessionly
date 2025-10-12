@@ -9,9 +9,9 @@ export function HeroSection() {
     <section className="min-h-screen flex items-center justify-center px-4 pt-36 pb-32 relative">
       <DottedGlowBackground
         className="pointer-events-none mask-radial-to-90% mask-radial-at-center opacity-20 dark:opacity-100 -z-1"
-        opacity={1}
+        opacity={0.2}
         gap={10}
-        radius={2}
+        radius={4}
         colorLightVar="--color-neutral-500"
         glowColorLightVar="--color-neutral-600"
         colorDarkVar="--color-neutral-500"
@@ -21,8 +21,8 @@ export function HeroSection() {
         speedMax={1.6}
         speedScale={1}
       />
-      <div className="blur-[20rem] size-96 bg-[#5eacd6]/40 absolute top-4 left-1/2 -translate-x-1/2 -z-1" />
-      <div className="blur-[20rem] size-96 bg-cyan-100/20 absolute top-4 left-1/2 -translate-x-1/2 -z-1" />
+      <div className="blur-[12rem] size-80 bg-cyan-50/40 absolute top-4 left-1/2 -translate-x-1/2 -z-1" />
+      {/*<div className="blur-[20rem] size-60 bg-cyan-100/10 absolute top-4 left-1/2 -translate-x-1/2 -z-1" />*/}
 
       <div className="max-w-7xl mx-auto text-center">
         <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card shadow-[0_0_20px_rgba(93,213,237,0.2)]">
