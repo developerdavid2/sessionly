@@ -1,60 +1,12 @@
-/* Sessionly AI - Premium Design System */
+/* Sessionly AI - Dark Mode Only Design System */
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  /* Light mode - clean, minimal slate tones */
-  --background: oklch(0.98 0.005 240);
-  --foreground: oklch(0.25 0.015 240);
-  --card: oklch(1.0 0 0);
-  --card-foreground: oklch(0.25 0.015 240);
-  --popover: oklch(1.0 0 0);
-  --popover-foreground: oklch(0.25 0.015 240);
-  --primary: oklch(0.65 0.15 195); /* Cyan accent */
-  --primary-foreground: oklch(1.0 0 0);
-  --secondary: oklch(0.92 0.01 240);
-  --secondary-foreground: oklch(0.25 0.015 240);
-  --muted: oklch(0.95 0.01 240);
-  --muted-foreground: oklch(0.5 0.01 240);
-  --accent: oklch(0.65 0.15 195); /* Cyan */
-  --accent-foreground: oklch(1.0 0 0);
-  --destructive: oklch(0.65 0.2 25);
-  --destructive-foreground: oklch(1.0 0 0);
-  --border: oklch(0.9 0.01 240);
-  --input: oklch(0.9 0.01 240);
-  --ring: oklch(0.65 0.15 195);
-  --chart-1: oklch(0.65 0.15 195);
-  --chart-2: oklch(0.6 0.12 220);
-  --chart-3: oklch(0.55 0.1 250);
-  --chart-4: oklch(0.7 0.12 180);
-  --chart-5: oklch(0.6 0.15 210);
-  --radius: 0.75rem;
-  --sidebar: oklch(0.98 0.005 240);
-  --sidebar-foreground: oklch(0.25 0.015 240);
-  --sidebar-primary: oklch(0.65 0.15 195);
-  --sidebar-primary-foreground: oklch(1.0 0 0);
-  --sidebar-accent: oklch(0.92 0.01 240);
-  --sidebar-accent-foreground: oklch(0.25 0.015 240);
-  --sidebar-border: oklch(0.9 0.01 240);
-  --sidebar-ring: oklch(0.65 0.15 195);
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
-  --font-serif: "Source Serif 4", "Source Serif 4 Fallback";
-  --shadow-x: 0px;
-  --shadow-y: 1px;
-  --shadow-blur: 2px;
-  --shadow-spread: 0px;
-  --shadow-opacity: 0.05;
-  --shadow-color: #000000;
-}
-
-.dark {
-  /* Dark mode - deep slate blue with teal undertones matching the sign-in image */
-  --background: oklch(0.15 0.02 230); /* Deep slate blue base */
+  /* Deep slate blue with teal undertones - single dark mode palette */
+  --background: oklch(0.15 0.02 230);
   --foreground: oklch(0.95 0.01 240);
-  --card: oklch(0.2 0.025 235); /* Slightly lighter slate for cards */
+  --card: oklch(0.2 0.025 235);
   --card-foreground: oklch(0.95 0.01 240);
   --popover: oklch(0.2 0.025 235);
   --popover-foreground: oklch(0.95 0.01 240);
@@ -64,7 +16,7 @@
   --secondary-foreground: oklch(0.9 0.01 240);
   --muted: oklch(0.22 0.025 235);
   --muted-foreground: oklch(0.6 0.01 240);
-  --accent: oklch(0.7 0.15 195); /* Cyan */
+  --accent: oklch(0.7 0.15 195);
   --accent-foreground: oklch(0.95 0.01 240);
   --destructive: oklch(0.65 0.2 25);
   --destructive-foreground: oklch(1.0 0 0);
@@ -76,6 +28,7 @@
   --chart-3: oklch(0.6 0.1 250);
   --chart-4: oklch(0.75 0.12 180);
   --chart-5: oklch(0.65 0.15 210);
+  --radius: 0.75rem;
   --sidebar: oklch(0.18 0.025 235);
   --sidebar-foreground: oklch(0.95 0.01 240);
   --sidebar-primary: oklch(0.7 0.15 195);
@@ -84,6 +37,9 @@
   --sidebar-accent-foreground: oklch(0.95 0.01 240);
   --sidebar-border: oklch(0.25 0.03 235);
   --sidebar-ring: oklch(0.7 0.15 195);
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-serif: "Source Serif 4", "Source Serif 4 Fallback";
   --shadow-x: 0px;
   --shadow-y: 2px;
   --shadow-blur: 8px;
@@ -163,18 +119,15 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
-  }
-
-  /* Premium dark mode gradient background matching sign-in image */
-  .dark body {
-    background: #142231;
+    background: #101010;
     position: relative;
   }
 
-  /* Adding noise/grain texture for dark mode only */
-  .dark body::before {
+  /* Noise/grain texture for premium feel */
+  body::before {
     content: "";
     position: fixed;
     top: 0;
@@ -188,7 +141,15 @@
   }
 }
 
-/* Elite glassmorphic card styles with signature top glow - using raw CSS instead of @apply */
+@layer base {
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+
+}
+
+/* Elite glassmorphic card styles with signature top glow */
 @layer components {
   .glass-card {
     background-color: rgba(255, 255, 255, 0.03);
@@ -196,7 +157,7 @@
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(4, 24, 33, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
   }
 
@@ -231,7 +192,7 @@
 
   /* Premium button with cyan glow */
   .btn-primary {
-    background: linear-gradient(to right, #053e4a, #4fc3f7);
+    background: linear-gradient(to right, #5dd5ed, #4fc3f7);
     box-shadow: 0 0 20px rgba(93, 213, 237, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
   }
@@ -242,12 +203,123 @@
     transform: translateY(-1px);
   }
 
-  /* Ambient glow effects */
+  /* Silver/slate glow variants for balanced design */
+  .glow-silver {
+    box-shadow: 0 0 40px rgba(148, 163, 184, 0.2);
+  }
+
+  .glow-silver-soft {
+    box-shadow: 0 0 30px rgba(203, 213, 224, 0.15);
+  }
+
+  /* Ambient glow effects - cyan for primary elements */
   .glow-cyan {
     box-shadow: 0 0 40px rgba(93, 213, 237, 0.3);
   }
 
   .glow-cyan-strong {
     box-shadow: 0 0 60px rgba(93, 213, 237, 0.5);
+  }
+
+  /* White ambient glow for subtle highlights */
+  .glow-white-ambient {
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Neumorphic button styles with inner glow and edge effects */
+  .btn-neomorph {
+    position: relative;
+    background: linear-gradient(135deg, rgba(30, 42, 58, 0.8) 0%, rgba(36, 52, 71, 0.9) 100%);
+    border: 1px solid rgba(93, 213, 237, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+
+  .btn-neomorph:hover {
+    border-color: rgba(93, 213, 237, 0.4);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 0 40px rgba(93, 213, 237, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+  }
+
+  /* Inner glow overlay */
+  .btn-inner-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(93, 213, 237, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .btn-neomorph:hover .btn-inner-glow {
+    opacity: 1;
+  }
+
+  /* Top edge glow */
+  .btn-glow-top {
+    position: absolute;
+    left: 40%;
+    top: 0;
+    z-index: 4;
+    height: 2px;
+    width: 60%;
+    background: linear-gradient(90deg, transparent 0%, rgba(93, 213, 237, 0.8) 50%, transparent 100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+    pointer-events: none;
+  }
+
+  .btn-neomorph:hover .btn-glow-top {
+    left: 1rem;
+    opacity: 0.6;
+  }
+
+  /* Bottom edge glow */
+  .btn-glow-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    z-index: 4;
+    height: 2px;
+    width: 35%;
+    background: linear-gradient(90deg, transparent 0%, rgba(93, 213, 237, 0.8) 50%, transparent 100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+    pointer-events: none;
+  }
+
+  .btn-neomorph:hover .btn-glow-bottom {
+    left: 60%;
+    opacity: 0.6;
+  }
+
+  /* Silver variant for secondary buttons */
+  .btn-neomorph-silver {
+    position: relative;
+    background: linear-gradient(135deg, rgba(30, 42, 58, 0.8) 0%, rgba(36, 52, 71, 0.9) 100%);
+    border: 1px solid rgba(203, 213, 224, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+
+  .btn-neomorph-silver:hover {
+    border-color: rgba(203, 213, 224, 0.4);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 0 40px rgba(203, 213, 224, 0.15), inset 0 1px 0
+    rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-neomorph-silver:hover .btn-glow-top,
+  .btn-neomorph-silver:hover .btn-glow-bottom {
+    background: linear-gradient(90deg, transparent 0%, rgba(203, 213, 224, 0.6) 50%, transparent 100%);
+  }
+
+
+  .headline-glow {
+    @apply max-lg:max-w-md
+    text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),_0_0_20px_rgba(255,255,255,0.3),_0_0_30px_rgba(255,255,255,0.4)];
   }
 }

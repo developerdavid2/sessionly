@@ -1,0 +1,264 @@
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { FileText, Mic, Search, Play, Sparkles } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+
+export function CapabilitiesSection() {
+  return (
+    <section className="py-16 sm:py-20 md:py-24 lg:py-32 px-3 sm:px-4 md:px-6 bg-black/20 relative overflow-hidden">
+      <div className="container mx-auto px-4">
+        {/* Connecting geometric lines - decorative */}
+        <div className="absolute inset-0 pointer-events-none opacity-90">
+          {/* Vertical lines */}
+          <div className="absolute left-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-500/30 to-transparent" />
+          <div className="absolute left-[50%] -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-500/20 to-transparent" />
+          <div className="absolute right-[15%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-500/30 to-transparent" />
+
+          {/* Horizontal lines */}
+          <div className="absolute top-[15%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-500/20 to-transparent" />
+          <div className="absolute top-[60%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-500/30 to-transparent" />
+
+          {/* Diagonal connecting lines */}
+          <svg
+            className="absolute inset-0 w-full h-full"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <line
+              x1="15%"
+              y1="25%"
+              x2="45%"
+              y2="60%"
+              stroke="url(#gradient1)"
+              strokeWidth="1"
+            />
+            <line
+              x1="45%"
+              y1="25%"
+              x2="80%"
+              y2="60%"
+              stroke="url(#gradient2)"
+              strokeWidth="1"
+            />
+            <defs>
+              <linearGradient
+                id="gradient1"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="rgba(93, 213, 237, 0)" />
+                <stop offset="50%" stopColor="rgba(93, 213, 237, 0.3)" />
+                <stop offset="100%" stopColor="rgba(93, 213, 237, 0)" />
+              </linearGradient>
+              <linearGradient
+                id="gradient2"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="rgba(93, 213, 237, 0)" />
+                <stop offset="50%" stopColor="rgba(93, 213, 237, 0.2)" />
+                <stop offset="100%" stopColor="rgba(93, 213, 237, 0)" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          {/* Connection dots */}
+          <div className="absolute left-[15%] top-[25%] w-2 h-2 rounded-full bg-slate-500/40 blur-sm" />
+          <div className="absolute left-[50%] top-[14.9%] -translate-y-[15%] -translate-x-1/2 w-2 h-2 rounded-full bg-slate-500/40" />
+          <div className="absolute right-[15%] top-[60%] w-2 h-2 rounded-full bg-slate-500/40 blur-sm" />
+        </div>
+
+        <div className="relative z-10">
+          {/* Header */}
+          <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+            <Badge className="text-xs sm:text-sm text-cyan-400 bg-cyan-600/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-cyan-400/20 mb-6 sm:mb-8 md:mb-10 lg:mb-14">
+              Capabilities
+            </Badge>
+
+            <div className="flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent leading-tight w-[50%]">
+                Your AI meeting companion
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-md lg:max-w-2xl lg:text-right">
+                Sessionly joins your conversations and handles everything
+                you&#39;d forget
+              </p>
+            </div>
+          </div>
+
+          {/* Bento Grid - Responsive */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-4 auto-rows-[minmax(180px,auto)] sm:auto-rows-[200px]">
+            {/* Large card - Never miss a detail */}
+            <Card className="sm:col-span-2 lg:col-span-4 lg:row-span-3 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]">
+              {/* Subtle top glow line */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Cyan accent glow on hover - very subtle */}
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="relative h-full p-4 sm:p-6 md:p-8 flex flex-col">
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500">
+                    <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
+                    Never miss a detail
+                  </h3>
+                </div>
+
+                <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6">
+                  Real-time transcription with speaker identification and
+                  timestamps
+                </p>
+
+                <div className="flex-1 bg-white/[0.02] backdrop-blur-xl rounded-lg sm:rounded-xl p-4 sm:p-6 border border-white/5">
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex gap-2 sm:gap-3">
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex-shrink-0" />
+                      <div className="flex-1 space-y-1.5 sm:space-y-2">
+                        <div className="h-1.5 sm:h-2 bg-white/10 rounded w-3/4" />
+                        <div className="h-1.5 sm:h-2 bg-white/5 rounded w-full" />
+                      </div>
+                    </div>
+                    <div className="flex gap-2 sm:gap-3">
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex-shrink-0" />
+                      <div className="flex-1 space-y-1.5 sm:space-y-2">
+                        <div className="h-1.5 sm:h-2 bg-white/10 rounded w-2/3" />
+                        <div className="h-1.5 sm:h-2 bg-white/5 rounded w-5/6" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Medium card - AI joins you */}
+            <Card className="sm:col-span-2 lg:col-span-2 lg:row-span-3 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="relative h-full p-4 sm:p-6 flex flex-col">
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500">
+                    <Mic className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+                  </div>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-white">
+                    AI joins you
+                  </h3>
+                </div>
+
+                <p className="text-xs sm:text-sm text-gray-400 mb-4">
+                  Voice-activated assistant ready to help
+                </p>
+
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="relative">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-cyan-500/10 to-cyan-600/10 flex items-center justify-center animate-pulse border border-cyan-500/20">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/30">
+                        <Mic className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 rounded-full bg-cyan-500/10 animate-ping" />
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Small card - Find anything */}
+            <Card className="sm:col-span-1 lg:col-span-2 lg:row-span-2 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="relative h-full p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
+                  <Search className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold mb-0.5 sm:mb-1 text-white">
+                    Find anything
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-400">
+                    Instant semantic search
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Large card - Share the full story */}
+            <Card className="sm:col-span-2 lg:col-span-4 lg:row-span-4 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="relative h-full p-4 sm:p-6 md:p-8 flex flex-col">
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500">
+                    <Play className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
+                    Share the full story
+                  </h3>
+                </div>
+
+                <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6">
+                  Playback with highlights and key moments
+                </p>
+
+                <div className="flex-1 bg-white/[0.02] backdrop-blur-xl rounded-lg sm:rounded-xl p-4 sm:p-6 border border-white/5 flex items-center justify-center">
+                  <div className="w-full max-w-md">
+                    <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                      <Button
+                        size="sm"
+                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 border border-cyan-500/30 hover:border-cyan-500/50 hover:bg-cyan-500/30 transition-all duration-300 flex items-center justify-center p-0"
+                      >
+                        <Play className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" />
+                      </Button>
+                      <div className="flex-1 h-1.5 sm:h-2 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full w-1/3 bg-gradient-to-r from-cyan-500/60 to-cyan-400/60 rounded-full" />
+                      </div>
+                      <span className="text-xs sm:text-sm text-gray-400 font-mono">
+                        12:34
+                      </span>
+                    </div>
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <div className="flex items-center gap-2 text-xs text-cyan-400/80">
+                        <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-cyan-400" />
+                        <span>Key decision at 3:45</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs text-cyan-400/80">
+                        <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-cyan-400" />
+                        <span>Action item at 8:12</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Medium card - Decisions documented */}
+            <Card className="sm:col-span-1 lg:col-span-2 lg:row-span-2 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="relative h-full p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold mb-0.5 sm:mb-1 text-white">
+                    Decisions, documented
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-400">
+                    AI-generated summaries
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

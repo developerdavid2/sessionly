@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/ui/logo";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,15 +33,14 @@ export function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+
+          <div className="flex items-center justify-center gap-2">
             <Logo />
-            <span className="text-2xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-              Sessionly AI
-            </span>
-          </Link>
+            <span className="text-3xl font-bold">Sessionly AI</span>
+          </div>
 
           {/* Desktop Navigation - Glassmorphic Pill */}
-          <div className="hidden md:flex items-center gap-1 glass-card px-2 py-2">
+          <div className="hidden lg:flex items-center gap-1 glass-card px-2 py-2">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -54,7 +54,7 @@ export function Navigation() {
           </div>
 
           {/* Right Side - Auth Buttons */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/sign-in"
               className="px-5 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors duration-300"
@@ -62,8 +62,13 @@ export function Navigation() {
               Sign in
             </Link>
             <Link href="/sign-up">
-              <Button className="px-6 py-2 rounded-full bg-gradient-to-r from-[#5dd5ed] to-[#4fc3f7] text-white font-medium shadow-lg shadow-[#5dd5ed]/20 hover:shadow-[#5dd5ed]/40 hover:scale-105 transition-all duration-300">
-                Get Started
+              <Button className="btn-neomorph text-cyan-400 text-lg px-8 py-6 rounded-xl font-medium relative group">
+                <span className="btn-inner-glow" />
+                <span className="relative z-10 flex items-center">
+                  Get Started
+                </span>
+                <span className="btn-glow-top" />
+                <span className="btn-glow-bottom" />
               </Button>
             </Link>
           </div>
@@ -71,7 +76,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg glass-card hover:bg-white/10 transition-colors duration-300"
+            className="lg:hidden p-2 rounded-lg glass-card hover:bg-white/10 transition-colors duration-300"
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6 text-white" />
@@ -83,7 +88,7 @@ export function Navigation() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 glass-card p-4 space-y-2 animate-in slide-in-from-top duration-300">
+          <div className="lg:hidden mt-4 glass-card p-4 space-y-2 animate-in slide-in-from-top duration-300">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -103,8 +108,13 @@ export function Navigation() {
                 Sign in
               </Link>
               <Link href="/sign-up" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-[#5dd5ed] to-[#4fc3f7] text-white font-medium shadow-lg shadow-[#5dd5ed]/20 hover:shadow-[#5dd5ed]/40 transition-all duration-300">
-                  Get Started
+                <Button className="btn-neomorph text-cyan-400 text-sm px-8 py-6 rounded-xl font-medium relative group">
+                  <span className="btn-inner-glow" />
+                  <span className="relative z-10 flex items-center">
+                    Get Started
+                  </span>
+                  <span className="btn-glow-top" />
+                  <span className="btn-glow-bottom" />
                 </Button>
               </Link>
             </div>
