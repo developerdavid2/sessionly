@@ -1,12 +1,19 @@
+"use client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, Mic, Search, Play, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import { FeatureAiVoice } from "@/modules/home/ui/components/feature-ai-voice";
+import React from "react";
 
 export function CapabilitiesSection() {
   return (
     <section className="py-16 sm:py-20 md:py-24 lg:py-32 px-3 sm:px-4 md:px-6 bg-black/20 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div className="container max-w-[1400px] mx-auto px-4">
+        {/*Custom ball Gradient*/}
+        <div className="size-10 lg:size-16 rounded-full bg-gradient-to-br from-white to-zinc-900/15 absolute top-[20%] right-[2%] will-change-transform" />
+        <div className="size-10 lg:size-32 rounded-full bg-gradient-to-br from-neutral-700 to-zinc-900/15 absolute bottom-[2%] left-[2%] will-change-transform" />
         {/* Connecting geometric lines - decorative */}
         <div className="absolute inset-0 pointer-events-none opacity-90">
           {/* Vertical lines */}
@@ -91,15 +98,16 @@ export function CapabilitiesSection() {
 
           {/* Bento Grid - Responsive */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-4 auto-rows-[minmax(180px,auto)] sm:auto-rows-[200px]">
+            {/*FIRST CELL*/}
             {/* Large card - Never miss a detail */}
-            <Card className="sm:col-span-2 lg:col-span-4 lg:row-span-3 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]">
+            <Card className="sm:col-span-2 lg:col-span-4 lg:row-span-3 relative group bg-[#161817] rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500 ">
               {/* Subtle top glow line */}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
+              {/*Beam Glow*/}
+              <div className="blur-[6rem] size-16 bg-slate-100 absolute top-5 left-1/2" />
               {/* Cyan accent glow on hover - very subtle */}
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-              <div className="relative h-full p-4 sm:p-6 md:p-8 flex flex-col">
+              <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col">
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500">
                     <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
@@ -108,37 +116,30 @@ export function CapabilitiesSection() {
                     Never miss a detail
                   </h3>
                 </div>
-
                 <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6">
                   Real-time transcription with speaker identification and
                   timestamps
                 </p>
 
-                <div className="flex-1 bg-white/[0.02] backdrop-blur-xl rounded-lg sm:rounded-xl p-4 sm:p-6 border border-white/5">
-                  <div className="space-y-3 sm:space-y-4">
-                    <div className="flex gap-2 sm:gap-3">
-                      <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex-shrink-0" />
-                      <div className="flex-1 space-y-1.5 sm:space-y-2">
-                        <div className="h-1.5 sm:h-2 bg-white/10 rounded w-3/4" />
-                        <div className="h-1.5 sm:h-2 bg-white/5 rounded w-full" />
-                      </div>
-                    </div>
-                    <div className="flex gap-2 sm:gap-3">
-                      <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex-shrink-0" />
-                      <div className="flex-1 space-y-1.5 sm:space-y-2">
-                        <div className="h-1.5 sm:h-2 bg-white/10 rounded w-2/3" />
-                        <div className="h-1.5 sm:h-2 bg-white/5 rounded w-5/6" />
-                      </div>
-                    </div>
-                  </div>
+                <div className="absolute top-[30%] left-1/2 -translate-x-1/2  bg-gradient-to-br bg-zinc-500/10 rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden w-[70%] mx-auto h-full border border-white/10 shadow-2xl  mask-b-from-10% mask-b-to-60%">
+                  {/* Image element */}
+                  <Image
+                    className="w-auto h-auto object-cover pointer-events-none"
+                    fill
+                    src="/capabilities/feature-2.jpeg"
+                    loading="lazy"
+                    alt="Feature 1"
+                  />
+                  {/* Overlay grid pattern */}
                 </div>
               </div>
             </Card>
 
             {/* Medium card - AI joins you */}
-            <Card className="sm:col-span-2 lg:col-span-2 lg:row-span-3 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]">
+            <Card className="sm:col-span-2 lg:col-span-2 lg:row-span-3 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500">
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              {/*Beam Glow*/}
+              <div className="blur-[6rem] size-16 bg-gradient-to-br from-slate-100/60 to-slate-200 absolute bottom-5 left-1/2" />
 
               <div className="relative h-full p-4 sm:p-6 flex flex-col">
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
@@ -153,17 +154,7 @@ export function CapabilitiesSection() {
                 <p className="text-xs sm:text-sm text-gray-400 mb-4">
                   Voice-activated assistant ready to help
                 </p>
-
-                <div className="flex-1 flex items-center justify-center">
-                  <div className="relative">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-cyan-500/10 to-cyan-600/10 flex items-center justify-center animate-pulse border border-cyan-500/20">
-                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/30">
-                        <Mic className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />
-                      </div>
-                    </div>
-                    <div className="absolute inset-0 rounded-full bg-cyan-500/10 animate-ping" />
-                  </div>
-                </div>
+                <FeatureAiVoice />
               </div>
             </Card>
 

@@ -1,8 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Sparkles, Play, ArrowRight } from "lucide-react";
-import { DottedGlowBackground } from "@/components/ui/dotted-glow-bacground";
+import { ArrowRight, Play, Sparkles } from "lucide-react";
 
 export function HeroSection() {
   return (
