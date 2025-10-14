@@ -12,7 +12,7 @@ export function CapabilitiesSection() {
     <section className="py-16 sm:py-20 md:py-24 lg:py-32 px-3 sm:px-4 md:px-6 bg-black/20 relative overflow-hidden">
       <div className="container max-w-[1400px] mx-auto px-4">
         {/*Custom ball Gradient*/}
-        <div className="size-10 lg:size-16 rounded-full bg-gradient-to-br from-white to-zinc-900/15 absolute top-[20%] right-[2%] will-change-transform" />
+        <div className="size-10 lg:size-20 rounded-full bg-gradient-to-br from-white to-cyan-900/15 absolute top-[20%] right-[4%] will-change-transform" />
         <div className="size-10 lg:size-32 rounded-full bg-gradient-to-br from-neutral-700 to-zinc-900/15 absolute bottom-[2%] left-[2%] will-change-transform" />
         {/* Connecting geometric lines - decorative */}
         <div className="absolute inset-0 pointer-events-none opacity-90">
@@ -159,11 +159,11 @@ export function CapabilitiesSection() {
             </Card>
 
             {/* Small card - Find anything */}
-            <Card className="sm:col-span-1 lg:col-span-2 lg:row-span-2 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]">
+            <Card className="sm:col-span-1 lg:col-span-2 lg:row-span-2 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500">
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-              <div className="relative h-full p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
+              <div className="relative p-4 sm:p-6 flex items-end h-full gap-3 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
                   <Search className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
                 </div>
