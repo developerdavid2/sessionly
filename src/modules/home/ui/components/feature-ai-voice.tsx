@@ -2,20 +2,20 @@ import React from "react";
 import { VideoIcon } from "lucide-react";
 import { FiCircle, FiMic, FiMonitor, FiPhoneOff } from "react-icons/fi";
 import Image from "next/image";
+import { AiFillDiscord } from "react-icons/ai";
+import { FaRobot } from "react-icons/fa";
 
 export const FeatureAiVoice = () => {
   return (
-    <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 ">
-      <div className="bg-white/[0.02] backdrop-blur-lg rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden flex items-center justify-center w-fit mb-10 mx-auto p-4">
-        <div className="flex justify-center items-center w-full size-[50%] relative">
-          <Image
-            className="w-auto h-auto object-cover pointer-events-none"
-            fill
-            src="/capabilities/robot.png"
-            loading="lazy"
-            alt="Robot"
-          />
-          <div className="absolute inset-0 rounded-full bg-blue-500/10 animate-ping" />
+    <div className="absolute top-[60%] -translate-y-[60%] left-1/2 -translate-x-1/2 ">
+      <div className="flex items-center justify-center mb-12">
+        <div className="relative">
+          <div className="w-20 h-20 sm:size-40 rounded-full bg-gradient-to-br from-cyan-500/10 to-cyan-600/10 flex items-center justify-center animate-pulse border border-cyan-500/20">
+            <div className="w-14 h-14 sm:size-32 rounded-full bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/30">
+              <FaRobot className="w-6 h-6 sm:size-16 text-white" />
+            </div>
+          </div>
+          <div className="absolute inset-0 rounded-full bg-cyan-500/10 animate-ping" />
         </div>
       </div>
 

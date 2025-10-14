@@ -9,7 +9,7 @@ export const TrustedBrandsScroll = () => {
       <div className="relative overflow-hidden rotate-1 opacity-20">
         <Separator className="mt-6 mb-2 bg-slate-200" />
         <ScrollVelocity
-          texts={["REQUIREMENTS ✧ DESIGNS ✧ DEVELOPEMENT ✧ TESTING ✧ "]}
+          texts={["FASTER DECISIONS ✧ MEETING NOTES ✧ SUMMARIES ✧ INSIGHTS ✧ "]}
           velocity={45}
           className="text-white custom-scroll-text font-poppins-bd whitespace-nowrap"
         />
@@ -21,7 +21,7 @@ export const TrustedBrandsScroll = () => {
       <div className="relative mt-4 overflow-hidden -rotate-1 opacity-15">
         <Separator className="mt-6 mb-2 bg-slate-200" />
         <ScrollVelocity
-          texts={["MONGODB ✦ EXPRESSJS ✦ REACTJS ✦ NODEJS ✦ "]}
+          texts={["FINANCE ✦ HEALTHCARE ✦ STARTUPS ✦ EDUCATION ✦ "]}
           velocity={40}
           className="custom-scroll-text font-poppins-md whitespace-nowrap text-slate-200"
         />
