@@ -137,6 +137,7 @@ export function CapabilitiesSection() {
 
             {/* Medium card - AI joins you */}
             <Card className="sm:col-span-2 lg:col-span-2 lg:row-span-3 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500">
+              {/*Subtle border glow*/}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {/*Beam Glow*/}
               <div className="blur-[6rem] size-16 bg-gradient-to-br from-slate-100/60 to-slate-200 absolute bottom-5 left-1/2" />
@@ -160,10 +161,25 @@ export function CapabilitiesSection() {
 
             {/* Small card - Find anything */}
             <Card className="sm:col-span-1 lg:col-span-2 lg:row-span-2 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500">
+              {/*Subtle border glow*/}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/*Beam Glow*/}
+              <div className="blur-[6rem] size-16 bg-cyan-100/30 absolute bottom-5 left-1/2" />
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
               <div className="relative p-4 sm:p-6 flex items-end h-full gap-3 sm:gap-4">
+                <div className="absolute top-[1%] left-1/2 -translate-x-1/2  bg-gradient-to-br bg-zinc-500/10 rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden w-[90%] mx-auto h-full border border-white/10 shadow-2xl  mask-b-from-10% mask-b-to-80%">
+                  {/* Image element */}
+                  <Image
+                    className="w-auto h-auto object-cover pointer-events-none"
+                    fill
+                    src="/capabilities/feature-search.webp"
+                    loading="lazy"
+                    alt="Feature Search"
+                  />
+                  {/* Overlay grid pattern */}
+                </div>
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
                   <Search className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
                 </div>
@@ -233,7 +249,7 @@ export function CapabilitiesSection() {
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-              <div className="relative h-full p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
+              <div className="relative p-4 sm:p-6 flex items-end h-full gap-3 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
                   <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
                 </div>
