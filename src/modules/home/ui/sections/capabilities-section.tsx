@@ -245,9 +245,24 @@ export function CapabilitiesSection() {
             </Card>
 
             {/* Medium card - Decisions documented */}
-            <Card className="sm:col-span-1 lg:col-span-2 lg:row-span-2 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]">
+            <Card className="sm:col-span-1 lg:col-span-2 lg:row-span-2 relative group bg-white/[0.02] backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden transition-all duration-500">
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="absolute top-[5%] right-0  bg-gradient-to-br bg-zinc-500/10 rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden w-[95%] mx-auto h-full border border-white/10 shadow-2xl  mask-b-from-10% mask-b-to-80% mask-r-from-70% mask-r-to-100%">
+                {/* Image element */}
+                {/* Video element */}
+                <video
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src="/demo-video.mp4" type="video/mp4" />
+                </video>
+                {/* Overlay grid pattern */}
+              </div>
 
               <div className="relative p-4 sm:p-6 flex items-end h-full gap-3 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
