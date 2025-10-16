@@ -178,7 +178,6 @@ export function CapabilitiesSection() {
                     loading="lazy"
                     alt="Feature Search"
                   />
-                  {/* Overlay grid pattern */}
                 </div>
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
                   <Search className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
@@ -213,33 +212,15 @@ export function CapabilitiesSection() {
                   Playback with highlights and key moments
                 </p>
 
-                <div className="flex-1 bg-white/[0.02] backdrop-blur-xl rounded-lg sm:rounded-xl p-4 sm:p-6 border border-white/5 flex items-center justify-center">
-                  <div className="w-full max-w-md">
-                    <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                      <Button
-                        size="sm"
-                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 border border-cyan-500/30 hover:border-cyan-500/50 hover:bg-cyan-500/30 transition-all duration-300 flex items-center justify-center p-0"
-                      >
-                        <Play className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" />
-                      </Button>
-                      <div className="flex-1 h-1.5 sm:h-2 bg-white/5 rounded-full overflow-hidden">
-                        <div className="h-full w-1/3 bg-gradient-to-r from-cyan-500/60 to-cyan-400/60 rounded-full" />
-                      </div>
-                      <span className="text-xs sm:text-sm text-gray-400 font-mono">
-                        12:34
-                      </span>
-                    </div>
-                    <div className="space-y-1.5 sm:space-y-2">
-                      <div className="flex items-center gap-2 text-xs text-cyan-400/80">
-                        <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-cyan-400" />
-                        <span>Key decision at 3:45</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs text-cyan-400/80">
-                        <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-cyan-400" />
-                        <span>Action item at 8:12</span>
-                      </div>
-                    </div>
-                  </div>
+                <div className="absolute top-[25%] left-1/2 -translate-x-1/2  bg-gradient-to-br bg-zinc-500/10 rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden w-[90%] mx-auto h-full border border-white/10 shadow-2xl  mask-b-from-10% mask-b-to-80%">
+                  {/* Image element */}
+                  <Image
+                    className="w-auto h-auto object-cover pointer-events-none"
+                    fill
+                    src="/capabilities/feature-search.webp"
+                    loading="lazy"
+                    alt="Feature Search"
+                  />
                 </div>
               </div>
             </Card>
@@ -251,7 +232,6 @@ export function CapabilitiesSection() {
 
               <div className="absolute top-[5%] right-0  bg-gradient-to-br bg-zinc-500/10 rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden w-[95%] mx-auto h-full border border-white/10 shadow-2xl  mask-b-from-10% mask-b-to-80% mask-r-from-70% mask-r-to-100%">
                 {/* Image element */}
-                {/* Video element */}
                 <video
                   className="w-full h-full object-cover"
                   autoPlay
