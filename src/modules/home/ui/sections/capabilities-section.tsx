@@ -1,7 +1,6 @@
 "use client";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { FileText, Mic, Search, Play, Sparkles } from "lucide-react";
+import { FileText, Mic, Play, Search, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { FeatureAiVoice } from "@/modules/home/ui/components/feature-ai-voice";

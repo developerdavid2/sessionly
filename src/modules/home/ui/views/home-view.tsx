@@ -3,6 +3,7 @@ import { HeroSection } from "@/modules/home/ui/sections/hero-section";
 import { Navigation } from "@/modules/home/ui/navigation";
 import { TrustedBrandsScroll } from "@/modules/home/ui/sections/trusted-brands-scroll";
 import { CapabilitiesSection } from "@/modules/home/ui/sections/capabilities-section";
+import { TimelineSection } from "@/modules/home/ui/sections/timeline-section";
 
 export const HomeView = () => {
   return (
@@ -17,7 +18,7 @@ export const HomeView = () => {
         <HeroSection />
         <TrustedBrandsScroll />
         <CapabilitiesSection />
-        {/*<TimelineSection />*/}
+        <TimelineSection />
         {/*<UseCasesSection />*/}
         {/*<DemoSection />*/}
         {/*<PricingSection />*/}
