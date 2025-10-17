@@ -80,15 +80,15 @@ export function CapabilitiesSection() {
         <div className="relative z-10">
           {/* Header */}
           <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-            <Badge className="text-xs sm:text-sm text-cyan-400 bg-cyan-600/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-cyan-400/20 mb-6 sm:mb-8 md:mb-10 lg:mb-14">
+            <Badge className="text-xs sm:text-sm text-cyan-400 bg-cyan-600/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-cyan-400/20 mb-6 sm:mb-8">
               Capabilities
             </Badge>
 
-            <div className="flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-8">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent leading-tight w-[50%]">
+            <div className="flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-20">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent leading-none w-[50%]">
                 Your AI meeting companion
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-md lg:max-w-2xl lg:text-right">
+              <p className="text-base text-gray-400 max-w-sm lg:text-right ">
                 Sessionly joins your conversations and handles everything
                 you&#39;d forget
               </p>
