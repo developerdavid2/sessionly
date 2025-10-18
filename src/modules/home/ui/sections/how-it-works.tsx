@@ -1,11 +1,12 @@
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Mic, Notebook } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { AiFillRobot } from "react-icons/ai";
 
-export function TimelineSection() {
+export const HowItWorks = () => {
   return (
     <section className="py-32 px-4 relative">
       <div className="container max-w-[1400px] mx-auto px-4">
@@ -63,16 +64,19 @@ export function TimelineSection() {
                     alt="Feature Search"
                   />
                 </div>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
-                  <Search className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold mb-0.5 sm:mb-1 text-white">
-                    Find anything
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-400">
-                    Instant semantic search
-                  </p>
+                <div className="flex items-start justify-start gap-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
+                    <AiFillRobot className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold mb-0.5 sm:mb-1 text-white">
+                      Create your agent and meeting
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-400">
+                      Spin up a smart meeting agent in seconds. Choose an agent
+                      type that fits your session.
+                    </p>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -97,16 +101,20 @@ export function TimelineSection() {
                     alt="Feature Search"
                   />
                 </div>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
-                  <Search className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold mb-0.5 sm:mb-1 text-white">
-                    Find anything
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-400">
-                    Instant semantic search
-                  </p>
+
+                <div className="flex items-start justify-start gap-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
+                    <Mic className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold mb-0.5 sm:mb-1 text-white">
+                      Start the meeting
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-400">
+                      Launch your meeting, invite your team, and start the
+                      conversation.
+                    </p>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -131,16 +139,19 @@ export function TimelineSection() {
                     alt="Feature Search"
                   />
                 </div>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
-                  <Search className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold mb-0.5 sm:mb-1 text-white">
-                    Find anything
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-400">
-                    Instant semantic search
-                  </p>
+                <div className="flex items-start justify-start gap-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors duration-500 flex-shrink-0">
+                    <Notebook className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold mb-0.5 sm:mb-1 text-white">
+                      Generate insights and summaries
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-400">
+                      Once the meeting wraps, Sessionly automatically delivers
+                      structured summaries.
+                    </p>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -149,4 +160,4 @@ export function TimelineSection() {
       </div>
     </section>
   );
-}
+};

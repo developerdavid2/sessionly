@@ -3,7 +3,8 @@ import { HeroSection } from "@/modules/home/ui/sections/hero-section";
 import { Navigation } from "@/modules/home/ui/navigation";
 import { TrustedBrandsScroll } from "@/modules/home/ui/sections/trusted-brands-scroll";
 import { CapabilitiesSection } from "@/modules/home/ui/sections/capabilities-section";
-import { TimelineSection } from "@/modules/home/ui/sections/timeline-section";
+import { HowItWorks } from "@/modules/home/ui/sections/how-it-works";
+import { UseCasesSection } from "@/modules/home/ui/sections/use-cases-section";
 
 export const HomeView = () => {
   return (
@@ -18,9 +19,8 @@ export const HomeView = () => {
         <HeroSection />
         <TrustedBrandsScroll />
         <CapabilitiesSection />
-        <TimelineSection />
-        {/*<UseCasesSection />*/}
-        {/*<DemoSection />*/}
+        <HowItWorks />
+        <UseCasesSection />
         {/*<PricingSection />*/}
         {/*<TestimonialsSection />*/}
         {/*<CTASection />*/}

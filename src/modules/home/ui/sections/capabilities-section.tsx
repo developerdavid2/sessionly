@@ -8,7 +8,10 @@ import React from "react";
 
 export function CapabilitiesSection() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-32 px-3 sm:px-4 md:px-6 bg-black/20 relative overflow-hidden">
+    <section
+      id="features"
+      className="py-16 sm:py-20 md:py-24 lg:py-32 px-3 sm:px-4 md:px-6 bg-black/20 relative overflow-hidden"
+    >
       <div className="container max-w-[1400px] mx-auto px-4">
         {/*Custom ball Gradient*/}
         <div className="size-10 lg:size-20 rounded-full bg-gradient-to-br from-white to-cyan-900/15 absolute top-[20%] right-[4%] will-change-transform" />
