@@ -5,6 +5,7 @@ import { TrustedBrandsScroll } from "@/modules/home/ui/sections/trusted-brands-s
 import { CapabilitiesSection } from "@/modules/home/ui/sections/capabilities-section";
 import { HowItWorks } from "@/modules/home/ui/sections/how-it-works";
 import { UseCasesSection } from "@/modules/home/ui/sections/use-cases-section";
+import { PricingSection } from "@/modules/home/ui/sections/pricing-section";
 
 export const HomeView = () => {
   return (
@@ -21,7 +22,7 @@ export const HomeView = () => {
         <CapabilitiesSection />
         <HowItWorks />
         <UseCasesSection />
-        {/*<PricingSection />*/}
+        <PricingSection />
         {/*<TestimonialsSection />*/}
         {/*<CTASection />*/}
         {/*<FooterSection />*/}
