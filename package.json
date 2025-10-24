@@ -81,6 +81,7 @@
     "openai": "^6.2.0",
     "prettier": "^3.6.2",
     "react": "^19.0.0",
+    "react-countup": "^6.5.3",
     "react-day-picker": "^9.8.0",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^6.0.0",

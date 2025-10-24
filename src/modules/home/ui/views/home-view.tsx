@@ -6,6 +6,8 @@ import { CapabilitiesSection } from "@/modules/home/ui/sections/capabilities-sec
 import { HowItWorks } from "@/modules/home/ui/sections/how-it-works";
 import { UseCasesSection } from "@/modules/home/ui/sections/use-cases-section";
 import { PricingSection } from "@/modules/home/ui/sections/pricing-section";
+import { TestimonialSection } from "@/modules/home/ui/sections/testimonials-section";
+import CTASection from "@/modules/home/ui/sections/cta-section";
 
 export const HomeView = () => {
   return (
@@ -22,9 +24,14 @@ export const HomeView = () => {
         <CapabilitiesSection />
         <HowItWorks />
         <UseCasesSection />
-        <PricingSection />
-        {/*<TestimonialsSection />*/}
-        {/*<CTASection />*/}
+        <div className="relative overflow-hidden">
+          {/* Shared vertical beam */}
+          <div className="absolute -top-[50%] left-5 -rotate-[30deg] w-16 h-[150%] bg-gradient-to-b from-slate-200 via-slate-400 to-transparent blur-[100px] sm:blur-[120px] opacity-70 z-[50]"></div>
+          <PricingSection />
+          <TestimonialSection />
+        </div>
+        <CTASection />
+
         {/*<FooterSection />*/}
       </div>
     </div>

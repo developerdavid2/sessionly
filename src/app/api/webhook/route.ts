@@ -105,7 +105,6 @@ export async function POST(req: NextRequest) {
   }
 
   const eventType = (payload as Record<string, unknown>)?.type;
-  console.log("📩 Event type:", eventType);
 
   if (eventType === "call.session_started") {
     const event = payload as CallSessionStartedEvent;

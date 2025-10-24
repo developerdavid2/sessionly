@@ -9,7 +9,6 @@ export function HeroSection() {
       {/* Background blur effects - adjusted for mobile */}
       <div className="blur-[8rem] sm:blur-[12rem] size-60 sm:size-80 bg-slate-50/40 absolute top-4 left-1/2 -translate-x-1/2 -z-1" />
       <div className="blur-[12rem] sm:blur-[20rem] size-40 sm:size-60 bg-slate-100/10 absolute top-4 left-1/2 -translate-x-1/2 -z-1" />
-
       <div className="w-full">
         {/* Constrained content area */}
         <div className="max-w-7xl mx-auto text-center">
@@ -38,7 +37,7 @@ export function HeroSection() {
           <div className="flex flex-col md:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4 sm:px-0 w-fit mx-auto">
             <Button
               size="sm"
-              className="btn-neomorph text-cyan-400 text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 rounded-xl font-medium relative group w-fit"
+              className="btn-neomorph text-cyan-100 text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 rounded-xl font-medium relative group w-fit bg-gradient-to-br from-cyan-600 via-cyan-700 to-cyan-800 shadow-[0_4px_16px_rgba(59,130,246,0.4),inset_0_1px_0_rgba(255,255,255,0.2),inset_0_-1px_0_rgba(0,0,0,0.3)] before:absolute before:-top-12 before:left-8 before:right-8 before:h-24 before:bg-cyan-500/30 before:blur-2xl before:content-['']"
             >
               <span className="btn-inner-glow" />
               <span className="relative z-10 flex items-center justify-center">
