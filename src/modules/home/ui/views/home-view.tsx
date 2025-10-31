@@ -8,6 +8,7 @@ import { UseCasesSection } from "@/modules/home/ui/sections/use-cases-section";
 import { PricingSection } from "@/modules/home/ui/sections/pricing-section";
 import { TestimonialSection } from "@/modules/home/ui/sections/testimonials-section";
 import CTASection from "@/modules/home/ui/sections/cta-section";
+import { Footer } from "@/modules/home/ui/sections/footer-section";
 
 export const HomeView = () => {
   return (
@@ -31,8 +32,7 @@ export const HomeView = () => {
           <TestimonialSection />
         </div>
         <CTASection />
-
-        {/*<FooterSection />*/}
+        <Footer />
       </div>
     </div>
   );
