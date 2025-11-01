@@ -73,14 +73,13 @@ const AuthView = () => {
                   <div
                     key={index}
                     className="relative w-8 h-8 rounded-full border-2 border-white/30 shadow-lg overflow-hidden transform hover:scale-110 transition-transform duration-200 bg-gray-800"
-                    style={{
-                      zIndex: avatars.length - index,
-                    }}
+                    style={{ zIndex: avatars.length - index }}
                   >
-                    <img
+                    <Image
                       src={avatar}
                       alt={`User ${index + 1}`}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                   </div>

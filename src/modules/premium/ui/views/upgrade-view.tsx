@@ -28,6 +28,7 @@ export const UpgradeView = () => {
   const productsList = products ?? [];
 
   // helper to safely read price amount (handles unions / legacy fields)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getPriceAmount = (product: any): number =>
     (product?.prices?.[0]?.priceAmount ??
       product?.prices?.[0]?.amount ??
@@ -140,7 +141,7 @@ export const UpgradeView = () => {
 
             const price = getPriceAmount(product) / 100;
             const features = product.benefits.map(
-              (benefit: any) => benefit.description,
+              (benefit) => benefit.description,
             );
 
             return (
