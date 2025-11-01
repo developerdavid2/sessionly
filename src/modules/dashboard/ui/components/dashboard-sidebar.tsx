@@ -16,7 +16,6 @@ import {
 
 import Link from "next/link";
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { FaRobot, FaVideo } from "react-icons/fa";
@@ -25,41 +24,26 @@ import { DashboardUserButton } from "@/modules/dashboard/ui/components/dashboard
 import { DashboardTrial } from "@/modules/dashboard/ui/components/dashboard-trial";
 
 const firstSection = [
-  {
-    icon: FaVideo,
-    label: "Meetings",
-    href: "/meetings",
-  },
-  {
-    icon: FaRobot,
-    label: "Agents",
-    href: "/agents",
-  },
+  { icon: FaVideo, label: "Meetings", href: "/meetings" },
+  { icon: FaRobot, label: "Agents", href: "/agents" },
 ];
 
 const secondSection = [
-  {
-    icon: MdOutlineWorkspacePremium,
-    label: "Upgrade",
-    href: "/upgrade",
-  },
+  { icon: MdOutlineWorkspacePremium, label: "Upgrade", href: "/upgrade" },
 ];
 
-const DashboardSidebar = ({
-  ...props
-}: React.ComponentProps<typeof Sidebar>) => {
+export default function DashboardSidebar({ ...props }) {
   const pathname = usePathname();
 
   return (
     <Sidebar
       collapsible="icon"
       className={cn(
-        "relative overflow-hidden border border-white/20 dark:border-slate-700/30 shadow-md shadow-gray-100/5",
+        "relative overflow-hidden border border-white/5 bg-[#0D0E10]/80 backdrop-blur-xl shadow-[0_0_40px_-15px_rgba(0,0,0,0.9)]",
       )}
       {...props}
     >
-      {/* Subtle Light Rays */}
-      <div className="absolute top-2 -left-1/2 w-32 h-52 bg-gradient-to-bl from-main-100 to-transparent rotate-45 blur-[5rem]" />
+      <div className="absolute top-0 left-0 w-48 h-48 bg-[#00B5FF]/10 blur-[140px]" />
 
       <SidebarHeader>
         <SidebarMenu>
@@ -79,99 +63,98 @@ const DashboardSidebar = ({
                     className="object-cover rounded"
                   />
                 </div>
-                <div className="grid flex-1 text-left leading-tight overflow-hidden">
-                  <span className="text-xl font-bold text-neutral-400 dark:text-[#9098A0] truncate transition-all duration-200 ease-in-out">
-                    Sessionly AI
-                  </span>
-                </div>
+                <span className="text-lg font-semibold text-[#8D96A1]">
+                  Sessionly AI
+                </span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <div className="px-4 py-2">
-        <Separator className="text-gray-500" />
-      </div>
+
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-2" />
 
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {firstSection.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton
-                    asChild
-                    className={cn(
-                      "py-5 hover:bg-[#A0A8AF]/20 dark:hover:bg-main-100/10 transition-colors duration-200",
-                      pathname === item.href &&
-                        "!bg-main-100/10 dark:!bg-main-100/40",
-                    )}
-                    isActive={pathname === item.href}
-                    tooltip={item.label}
-                  >
-                    <Link href={item.href}>
-                      <item.icon
-                        className={cn(
-                          "size-5 text-gray-500 dark:text-[#A0A8AF] transition-colors duration-200",
-                          pathname === item.href && "text-foreground",
-                        )}
-                      />
-                      <span
-                        className={cn(
-                          "text-sm font-medium text-gray-500 dark:text-[#A0A8AF] tracking-tight transition-colors duration-200",
-                          pathname === item.href &&
-                            "text-foreground !font-bold",
-                        )}
-                      >
-                        {item.label}
-                      </span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+            <SidebarMenu className="gap-y-6">
+              {firstSection.map((item) => {
+                const active = pathname === item.href;
+
+                return (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton
+                      asChild
+                      tooltip={item.label}
+                      className={cn(
+                        "group py-5 rounded-md transition-colors duration-150",
+                        "hover:bg-white/5",
+                        active && "bg-white/10",
+                      )}
+                    >
+                      <Link href={item.href}>
+                        <item.icon
+                          className={cn(
+                            "size-5 text-[#8D96A1]",
+                            active && "text-white",
+                          )}
+                        />
+                        <span
+                          className={cn(
+                            "text-sm font-medium text-[#8D96A1]",
+                            active && "text-white font-semibold",
+                          )}
+                        >
+                          {item.label}
+                        </span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <div className="px-4 py-2">
-          <Separator className="text-gray-500" />
-        </div>
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-2" />
 
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {secondSection.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton
-                    asChild
-                    className={cn(
-                      "py-5 hover:bg-[#A0A8AF]/20 dark:hover:bg-main-100/10 transition-colors duration-200",
-                      pathname === item.href &&
-                        "!bg-main-100/10 dark:!bg-main-100/40",
-                    )}
-                    isActive={pathname === item.href}
-                    tooltip={item.label}
-                  >
-                    <Link href={item.href}>
-                      <item.icon
-                        className={cn(
-                          "size-5 text-yellow-700 dark:text-yellow-500 transition-colors duration-200",
-                          pathname === item.href && "text-foreground",
-                        )}
-                      />
-                      <span
-                        className={cn(
-                          "text-sm font-medium text-yellow-700 dark:text-yellow-500 tracking-tight transition-colors duration-200",
-                          pathname === item.href &&
-                            "text-foreground !font-bold",
-                        )}
-                      >
-                        {item.label}
-                      </span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {secondSection.map((item) => {
+                const active = pathname === item.href;
+
+                return (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton
+                      asChild
+                      tooltip={item.label}
+                      className={cn(
+                        "group py-5 rounded-md transition-colors duration-150",
+                        "hover:bg-white/5",
+                        active && "bg-white/10",
+                      )}
+                    >
+                      <Link href={item.href}>
+                        <item.icon
+                          className={cn(
+                            "size-5 text-yellow-500",
+                            active && "text-yellow-300",
+                          )}
+                        />
+                        <span
+                          className={cn(
+                            "text-sm font-medium text-yellow-500",
+                            active && "text-yellow-300 font-semibold",
+                          )}
+                        >
+                          {item.label}
+                        </span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -185,6 +168,4 @@ const DashboardSidebar = ({
       <SidebarRail />
     </Sidebar>
   );
-};
-
-export default DashboardSidebar;
+}

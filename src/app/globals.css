@@ -6,21 +6,21 @@
   /* Deep slate blue with teal undertones - single dark mode palette */
   --background: oklch(0.15 0.02 230);
   --foreground: oklch(0.95 0.01 240);
-  --card: oklch(0.2 0.025 235);
+  --card: oklch(0.197 0.004 286.029);
   --card-foreground: oklch(0.95 0.01 240);
-  --popover: oklch(0.2 0.025 235);
+  --popover: oklch(0.243 0.002 247.926);
   --popover-foreground: oklch(0.95 0.01 240);
-  --primary: oklch(0.7 0.15 195); /* Bright cyan accent */
+  --primary: oklch(0.293 0 89.876);
   --primary-foreground: oklch(0.15 0.02 230);
-  --secondary: oklch(0.25 0.03 235);
+  --secondary: oklch(0.239 0 89.876);
   --secondary-foreground: oklch(0.9 0.01 240);
-  --muted: oklch(0.22 0.025 235);
-  --muted-foreground: oklch(0.6 0.01 240);
-  --accent: oklch(0.7 0.15 195);
+  --muted: oklch(0.373 0.003 17.279);
+  --muted-foreground: oklch(0.304 0.001 197.082);
+  --accent: oklch(0.349 0.001 17.224);
   --accent-foreground: oklch(0.95 0.01 240);
   --destructive: oklch(0.65 0.2 25);
   --destructive-foreground: oklch(1.0 0 0);
-  --border: oklch(0.25 0.03 235);
+  --border: oklch(0.333 0 89.876 / 0.73);
   --input: oklch(0.25 0.03 235);
   --ring: oklch(0.7 0.15 195);
   --chart-1: oklch(0.7 0.15 195);
@@ -29,13 +29,13 @@
   --chart-4: oklch(0.75 0.12 180);
   --chart-5: oklch(0.65 0.15 210);
   --radius: 0.75rem;
-  --sidebar: oklch(0.18 0.025 235);
+  --sidebar: oklch(0.197 0.004 286.029);
   --sidebar-foreground: oklch(0.95 0.01 240);
   --sidebar-primary: oklch(0.7 0.15 195);
-  --sidebar-primary-foreground: oklch(0.15 0.02 230);
-  --sidebar-accent: oklch(0.25 0.03 235);
+  --sidebar-primary-foreground: oklch(0.209 0 89.876);
+  --sidebar-accent: oklch(0.258 0.003 17.351);
   --sidebar-accent-foreground: oklch(0.95 0.01 240);
-  --sidebar-border: oklch(0.25 0.03 235);
+  --sidebar-border: oklch(0.333 0 89.876 / 0.73);
   --sidebar-ring: oklch(0.7 0.15 195);
   --font-sans: "Geist", "Geist Fallback";
   --font-mono: "Geist Mono", "Geist Mono Fallback";
@@ -385,4 +385,6 @@
     overflow: hidden;
     width: 100%;
   }
+
+
 }

@@ -12,15 +12,16 @@ export const plans = [
   {
     id: "0",
     title: "Starter",
-    priceMonthly: 19,
-    priceYearly: 12,
+    priceMonthly: 29,
+    priceYearly: 15,
     caption: "Perfect for individuals",
     features: [
-      "10 AI sessions per month",
-      "Real-time transcription",
-      "Basic AI summaries",
-      "7-day meeting history",
-      "Email support",
+      "10 AI agents included",
+      "50 sessions per month",
+      "Real-time transcription & summaries",
+      "30-day session history",
+      "Standard AI models (GPT-4o-mini)",
+      "Email support (24-48hr response)",
     ],
     icon: "/pricing/circle.svg",
     logo: "/pricing/plan-1.png",
@@ -28,33 +29,39 @@ export const plans = [
   {
     id: "1",
     title: "Pro",
-    priceMonthly: 79,
-    priceYearly: 59,
+    priceMonthly: 49,
+    priceYearly: 39,
     caption: "Most popular plan",
     features: [
-      "Unlimited AI sessions",
-      "Advanced AI insights & analytics",
-      "Meeting playback & recordings",
-      "In-chat AI assistant",
-      "90-day meeting history",
-      "Priority support",
+      "30 AI agents included",
+      "Unlimited sessions",
+      "Session recordings & playback",
+      "Integrations (Slack, Teams, Zoom)",
+      "90-day session history",
+      "Premium AI models (GPT-4, Claude)",
+      "Priority support (4-8hr response)",
+      "Export transcripts & reports",
     ],
     icon: "/pricing/triangle.svg",
     logo: "/pricing/plan-2.png",
   },
   {
     id: "2",
-    title: "Team",
-    priceMonthly: 200,
-    priceYearly: 150,
+    title: "Enterprise",
+    priceMonthly: 99,
+    priceYearly: 79,
     caption: "Built for collaboration",
     features: [
       "Everything in Pro",
-      "Unlimited team members",
-      "Shared meeting workspace",
-      "Team analytics dashboard",
-      "Custom AI training",
-      "Dedicated account manager",
+      "Unlimited AI agents",
+      "Up to 10 team members",
+      "Shared agent workspace",
+      "Team analytics & performance metrics",
+      "Role-based permissions",
+      "1-year session history",
+      "API access for automation",
+      "Custom integrations",
+      "SSO & advanced security",
     ],
     icon: "/pricing/hexagon.svg",
     logo: "/pricing/plan-3.png",
@@ -222,7 +229,7 @@ export const PricingSection = () => {
                     />
                   </div>
                   <div className="text-sm text-gray-400 ml-2 mt-8 uppercase font-medium">
-                    / mo
+                    / {monthly ? "month" : "year"}
                   </div>
                 </div>
 
