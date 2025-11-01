@@ -25,8 +25,8 @@ import Logo from "@/components/ui/logo";
 import AuthView from "@/modules/auth/ui/views/auth-view";
 import Link from "next/link";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { cn } from "@/lib/utils";
 
-// Fixed Zod schema with correct refine syntax
 const formSchema = z
   .object({
     name: z.string().min(1, "Name is required"),
@@ -44,7 +44,6 @@ type FormSchema = z.infer<typeof formSchema>;
 const SignUpView = () => {
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
-  // Separate states for password visibility
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter();
@@ -113,11 +112,10 @@ const SignUpView = () => {
 
   return (
     <div className="flex flex-col gap-6 shadow-2xl shadow-main-300/30 rounded-2xl">
-      <Card className="bg-transparent shadow-none border-none py-0 overflow-hidden">
+      <Card className="border-none py-0 relative bg-black/20 shadow-2xl border border-white/20 overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2 overflow-hidden rounded-2xl">
-          {/* Sign Up Form Section - Elevated */}
-          <div className="relative bg-blue-200/10 dark:bg-white/5 backdrop-blur-xl border-r border-white/20 dark:border-slate-700/30">
-            {/* Subtle raised shadow effect */}
+          {/* Sign Up Form Section */}
+          <div className="relative border-r border-white/20 dark:border-slate-700/30">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/5 dark:to-black/20" />
             <div className="absolute -right-2 top-0 bottom-0 w-4 bg-gradient-to-r from-transparent to-black/10 dark:to-black/30 blur-md" />
 
@@ -130,10 +128,10 @@ const SignUpView = () => {
                   <Logo />
                   <div className="flex flex-col items-start">
                     <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
-                      Create an Account
+                      Create your account
                     </h1>
                     <p className="text-muted-foreground text-balance text-sm">
-                      Let&apos;s get you started with a new account.
+                      Get started with your new account today.
                     </p>
                   </div>
 
@@ -144,13 +142,13 @@ const SignUpView = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-slate-700 dark:text-slate-300 font-medium">
-                            Name
+                            Full Name
                           </FormLabel>
                           <FormControl>
                             <Input
                               type="text"
                               placeholder="John Doe"
-                              className="h-11 bg-white/50 dark:bg-slate-800/50 border-slate-200/60 dark:border-slate-700/60 backdrop-blur-sm focus:border-indigo-400 dark:focus:border-gray-500 focus:ring-indigo-400/20 transition-all duration-200"
+                              className="flex-1 px-5 py-6 bg-black/30 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/30 focus:ring-1 focus:ring-cyan-500/30 transition-all"
                               {...field}
                             />
                           </FormControl>
@@ -158,6 +156,7 @@ const SignUpView = () => {
                         </FormItem>
                       )}
                     />
+
                     <FormField
                       control={form.control}
                       name="email"
@@ -170,7 +169,7 @@ const SignUpView = () => {
                             <Input
                               type="email"
                               placeholder="Email address"
-                              className="h-11 bg-white/50 dark:bg-slate-800/50 border-slate-200/60 dark:border-slate-700/60 backdrop-blur-sm focus:border-indigo-400 dark:focus:border-gray-500 focus:ring-indigo-400/20 transition-all duration-200"
+                              className="flex-1 px-5 py-6 bg-black/30 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/30 focus:ring-1 focus:ring-cyan-500/30 transition-all"
                               {...field}
                             />
                           </FormControl>
@@ -179,6 +178,7 @@ const SignUpView = () => {
                       )}
                     />
 
+                    {/* Password */}
                     <FormField
                       control={form.control}
                       name="password"
@@ -191,20 +191,14 @@ const SignUpView = () => {
                             <div className="relative">
                               <Input
                                 type={showPassword ? "text" : "password"}
-                                placeholder="••••••••"
-                                className="h-11 pr-12 bg-white/50 dark:bg-slate-800/50 border-slate-200/60 dark:border-slate-700/60 backdrop-blur-sm focus:border-indigo-400 dark:focus:border-gray-500 focus:ring-indigo-400/20 transition-all duration-200"
+                                placeholder="*******"
+                                className="flex-1 px-5 py-6 bg-black/30 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/30 focus:ring-1 focus:ring-cyan-500/30 transition-all pr-12"
                                 {...field}
                               />
                               <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-md
-                                  text-slate-400 dark:text-slate-500
-                                  hover:text-slate-600 dark:hover:text-slate-300
-                                  hover:bg-slate-100/50 dark:hover:bg-slate-700/30
-                                  backdrop-blur-sm transition-all duration-200
-                                  focus:outline-none focus:ring-2 focus:ring-indigo-400/20 focus:ring-offset-0"
-                                tabIndex={-1}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-md text-slate-400 dark:text-slate-500 hover:text-slate-300 hover:bg-slate-700/30 backdrop-blur-sm transition-all duration-200"
                               >
                                 {showPassword ? (
                                   <EyeOff className="h-4 w-4" />
@@ -219,6 +213,7 @@ const SignUpView = () => {
                       )}
                     />
 
+                    {/* Confirm Password */}
                     <FormField
                       control={form.control}
                       name="confirmPassword"
@@ -231,8 +226,8 @@ const SignUpView = () => {
                             <div className="relative">
                               <Input
                                 type={showConfirmPassword ? "text" : "password"}
-                                placeholder="••••••••"
-                                className="h-11 pr-12 bg-white/50 dark:bg-slate-800/50 border-slate-200/60 dark:border-slate-700/60 backdrop-blur-sm focus:border-indigo-400 dark:focus:border-gray-500 focus:ring-indigo-400/20 transition-all duration-200"
+                                placeholder="*******"
+                                className="flex-1 px-5 py-6 bg-black/30 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500/30 focus:ring-1 focus:ring-cyan-500/30 transition-all pr-12"
                                 {...field}
                               />
                               <button
@@ -240,13 +235,7 @@ const SignUpView = () => {
                                 onClick={() =>
                                   setShowConfirmPassword(!showConfirmPassword)
                                 }
-                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-md
-                                  text-slate-400 dark:text-slate-500
-                                  hover:text-slate-600 dark:hover:text-slate-300
-                                  hover:bg-slate-100/50 dark:hover:bg-slate-700/30
-                                  backdrop-blur-sm transition-all duration-200
-                                  focus:outline-none focus:ring-2 focus:ring-indigo-400/20 focus:ring-offset-0"
-                                tabIndex={-1}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-md text-slate-400 dark:text-slate-500 hover:text-slate-300 hover:bg-slate-700/30 backdrop-blur-sm transition-all duration-200"
                               >
                                 {showConfirmPassword ? (
                                   <EyeOff className="h-4 w-4" />
@@ -271,41 +260,26 @@ const SignUpView = () => {
                     </Alert>
                   )}
 
-                  {/* Premium Embossed Sign Up Button */}
+                  {/* Sign Up Button */}
                   <Button
                     disabled={pending}
                     type="submit"
-                    className="relative w-full h-12 cursor-pointer
-                      bg-gradient-to-b from-slate-100 to-slate-200 hover:from-slate-50 hover:to-slate-200
-                       rounded-full shadow-lg
-                      shadow-slate-200/60
-                      dark:bg-gradient-to-b dark:from-slate-900/30 dark:to-slate-700/10
-                      dark:hover:bg-slate-500/30 dark:hover:text-gray-300
-                       border-slate-200/50 dark:border-slate-600/50
-                     dark:hover:border-slate-500/30
-                      dark:shadow-black/10
-                      hover:shadow-xl hover:shadow-slate-300/70 dark:hover:shadow-md dark:hover:shadow-black/20
-                      text-slate-700 dark:text-slate-200
-                      font-semibold transition-all duration-300 transform
-                      active:scale-80
-                      disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
+                    className={cn(
+                      "relative h-12 rounded-xl font-semibold text-sm uppercase tracking-wide text-white w-full overflow-hidden group",
+                      "bg-gradient-to-br from-gray-600 via-[#1D1F1F] via-60% to-[#1D1F1F]/50 shadow-xl disabled:opacity-70 disabled:cursor-not-allowed",
+                    )}
                   >
-                    {/* Inner glow effect - Light Mode */}
-                    <div className="absolute inset-0 bg-gradient-to-bl from-white/60 via-white/20 to-transparent dark:from-white/10 dark:via-transparent dark:to-transparent rounded-xl" />
-
-                    {/* Top highlight - Light Mode */}
-                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent  dark:via-white/40 to-transparent" />
-
-                    {/* Bottom shadow for embossed effect - Light Mode only */}
-                    <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-slate-400/40 to-transparent dark:via-transparent" />
+                    <span className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-[5]" />
+                    <span className="absolute left-[40%] top-0 z-[6] h-[2px] w-[60%] bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent opacity-0 group-hover:opacity-60 group-hover:left-4 transition-all duration-500" />
+                    <span className="absolute bottom-0 left-4 z-[6] h-[2px] w-[35%] bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent opacity-0 group-hover:opacity-60 group-hover:left-[60%] transition-all duration-500" />
 
                     {pending ? (
                       <div className="flex items-center justify-center gap-2 relative z-10">
                         <div className="animate-spin rounded-full h-4 w-4 border-2 border-slate-400/30 dark:border-white/30 border-t-slate-600 dark:border-t-white" />
-                        <span>Creating account...</span>
+                        <span>Creating...</span>
                       </div>
                     ) : (
-                      <span className="relative z-10">Sign up</span>
+                      <span className="relative z-10">Sign Up</span>
                     )}
                   </Button>
 
@@ -314,33 +288,32 @@ const SignUpView = () => {
                     <div className="absolute inset-0 flex items-center">
                       <div className="w-full border-t border-slate-200/60 dark:border-slate-700/60" />
                     </div>
-                    <span className="bg-white/80 dark:bg-[#222530] text-slate-600 dark:text-slate-400 relative px-4 backdrop-blur-sm rounded-full">
+                    <span className="bg-[#1D1F1F]/80 text-slate-400 relative px-4 backdrop-blur-sm rounded-full">
                       Or continue with
                     </span>
                   </div>
 
-                  {/* Social Login Buttons */}
+                  {/* Social Buttons */}
                   <div className="grid grid-cols-2 gap-4">
                     <Button
                       disabled={pending}
-                      variant="outline"
                       type="button"
-                      className="h-11 bg-white/60 dark:bg-slate-800/60 border-slate-200/60 dark:border-slate-700/60 backdrop-blur-sm hover:bg-blue-50/5 hover:shadow-lg    dark:hover:bg-slate-500/30  transition-all duration-200 cursor-pointer items-center flex"
+                      className="h-11 bg-[#232628] backdrop-blur-sm hover:bg-gray-500/30 hover:shadow-lg transition-all duration-200 cursor-pointer text-white flex items-center justify-center gap-2"
                       onClick={() => onSocialSignIn("google")}
                     >
                       <FaGoogle /> Google
                     </Button>
                     <Button
                       disabled={pending}
-                      variant="outline"
                       type="button"
-                      className="h-11 bg-white/60 dark:bg-slate-800/60 border-slate-200/60 dark:border-slate-700/60 backdrop-blur-sm hover:bg-blue-50/5 hover:shadow-lg   dark:hover:bg-slate-500/30  transition-all duration-200 cursor-pointer"
+                      className="h-11 bg-[#232628] backdrop-blur-sm hover:bg-gray-500/30 hover:shadow-lg transition-all duration-200 cursor-pointer text-white flex items-center justify-center gap-2"
                       onClick={() => onSocialSignIn("github")}
                     >
                       <FaGithub className="mr-2 h-4 w-4" />
                       GitHub
                     </Button>
                   </div>
+
                   <div className="text-center text-sm">
                     Already have an account?{" "}
                     <Link
@@ -355,7 +328,7 @@ const SignUpView = () => {
             </Form>
           </div>
 
-          {/* Auth View Section */}
+          {/* Auth Side View */}
           <AuthView />
         </CardContent>
       </Card>

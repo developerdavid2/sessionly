@@ -275,7 +275,7 @@ export const PricingSection = () => {
                         ? "bg-gradient-to-br from-cyan-600 via-cyan-700 to-cyan-800/50 shadow-xl"
                         : "bg-gradient-to-br from-gray-600 via-[#1D1F1F] via-60% to-[#1D1F1F]/50 shadow-2xl",
                     )}
-                    onClick={() => router.push("/sign-in")}
+                    onClick={() => router.push("/sign-up")}
                   >
                     {/* Hover overlay for smooth transition */}
                     {index !== 1 && (

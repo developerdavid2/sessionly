@@ -88,7 +88,7 @@ export function CapabilitiesSection() {
             </Badge>
 
             <div className="flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-20">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent leading-none w-[50%]">
+              <h2 className="lg:text-6xl leading-none w-[50%] text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent pt-32 tracking-tighter">
                 Your AI meeting companion
               </h2>
               <p className="text-base text-gray-400 max-w-sm lg:text-right ">

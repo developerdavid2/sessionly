@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Mic, Notebook } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -5,8 +7,10 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { AiFillRobot } from "react-icons/ai";
+import { useRouter } from "next/navigation";
 
 export const HowItWorks = () => {
+  const router = useRouter();
   return (
     <section className="py-32 px-4 relative">
       <div className="container max-w-[1400px] mx-auto px-4">
@@ -17,7 +21,7 @@ export const HowItWorks = () => {
           </Badge>
 
           <div className="flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent leading-none w-[50%]">
+            <h2 className="leading-none w-[50%] text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent pt-32 tracking-tighter">
               Three steps to better meetings
             </h2>
             <div className="flex flex-col items-end gap-y-6">
@@ -29,6 +33,7 @@ export const HowItWorks = () => {
               <Button
                 size="sm"
                 className="btn-neomorph text-cyan-400 text-base px-5 py-6 rounded-xl font-medium relative group w-fit"
+                onClick={() => router.push("/sign-up")}
               >
                 <span className="btn-inner-glow" />
                 <span className="relative z-10 flex items-center justify-center">

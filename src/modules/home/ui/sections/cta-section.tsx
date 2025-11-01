@@ -70,7 +70,7 @@ export default function CTASection() {
               "relative h-12 rounded-xl font-semibold text-sm uppercase tracking-wide text-white w-[40%] overflow-hidden group",
               "bg-gradient-to-br from-gray-600 via-[#1D1F1F] via-60% to-[#1D1F1F]/50 shadow-xl",
             )}
-            onClick={() => router.push("/sign-in")}
+            onClick={() => router.push("/sign-up")}
           >
             {/* Inner glow overlay */}
             <span className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-[5]"></span>

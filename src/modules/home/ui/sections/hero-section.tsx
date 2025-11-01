@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function HeroSection() {
+  const router = useRouter();
   return (
     <section className="min-h-[100svh] flex items-center justify-center px-3 sm:px-4 md:px-6 pt-20 sm:pt-24 md:pt-32 lg:pt-36 pb-16 sm:pb-20 relative mask-b-from-40% mask-b-to-85%">
       {/* Background blur effects - adjusted for mobile */}
@@ -38,6 +40,7 @@ export function HeroSection() {
             <Button
               size="sm"
               className="btn-neomorph text-cyan-100 text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 rounded-xl font-medium relative group w-fit bg-gradient-to-br from-cyan-600 via-cyan-700 to-cyan-800 shadow-[0_4px_16px_rgba(59,130,246,0.4),inset_0_1px_0_rgba(255,255,255,0.2),inset_0_-1px_0_rgba(0,0,0,0.3)] before:absolute before:-top-12 before:left-8 before:right-8 before:h-24 before:bg-cyan-500/30 before:blur-2xl before:content-['']"
+              onClick={() => router.push("/sign-up")}
             >
               <span className="btn-inner-glow" />
               <span className="relative z-10 flex items-center justify-center">
