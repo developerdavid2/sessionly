@@ -19,7 +19,7 @@
   --accent: oklch(0.349 0.001 17.224);
   --accent-foreground: oklch(0.95 0.01 240);
   --destructive: oklch(0.65 0.2 25);
-  --destructive-foreground: oklch(1.0 0 0);
+  --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.333 0 89.876 / 0.73);
   --input: oklch(0.25 0.03 235);
   --ring: oklch(0.7 0.15 195);
@@ -89,23 +89,54 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --font-serif: "Source Serif 4", "Source Serif 4 Fallback";
   --shadow-2xs: var(--shadow-x) var(--shadow-y)
-  color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
-  --shadow-xs: var(--shadow-x) var(--shadow-y) var(--shadow-blur) var(--shadow-spread)
-  color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
-  --shadow-sm: var(--shadow-x) var(--shadow-y) calc(var(--shadow-blur) * 1.5) var(--shadow-spread)
-  color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
-  --shadow-md: calc(var(--shadow-x) * 2) calc(var(--shadow-y) * 2) calc(var(--shadow-blur) * 3)
-  calc(var(--shadow-spread) - 1px)
-  color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
-  --shadow-lg: calc(var(--shadow-x) * 4) calc(var(--shadow-y) * 4) calc(var(--shadow-blur) * 5)
-  calc(var(--shadow-spread) - 3px)
-  color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
-  --shadow-xl: calc(var(--shadow-x) * 6) calc(var(--shadow-y) * 6) calc(var(--shadow-blur) * 7)
-  calc(var(--shadow-spread) - 5px)
-  color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 100%), transparent);
-  --shadow-2xl: calc(var(--shadow-x) * 8) calc(var(--shadow-y) * 8) calc(max(0px, var(--shadow-blur) * 9 - 8px))
-  calc(var(--shadow-spread) - 12px)
-  color-mix(in srgb, var(--shadow-color) calc(var(--shadow-opacity) * 250%), transparent);
+    color-mix(
+      in srgb,
+      var(--shadow-color) calc(var(--shadow-opacity) * 100%),
+      transparent
+    );
+  --shadow-xs: var(--shadow-x) var(--shadow-y) var(--shadow-blur)
+    var(--shadow-spread)
+    color-mix(
+      in srgb,
+      var(--shadow-color) calc(var(--shadow-opacity) * 100%),
+      transparent
+    );
+  --shadow-sm: var(--shadow-x) var(--shadow-y) calc(var(--shadow-blur) * 1.5)
+    var(--shadow-spread)
+    color-mix(
+      in srgb,
+      var(--shadow-color) calc(var(--shadow-opacity) * 100%),
+      transparent
+    );
+  --shadow-md: calc(var(--shadow-x) * 2) calc(var(--shadow-y) * 2)
+    calc(var(--shadow-blur) * 3) calc(var(--shadow-spread) - 1px)
+    color-mix(
+      in srgb,
+      var(--shadow-color) calc(var(--shadow-opacity) * 100%),
+      transparent
+    );
+  --shadow-lg: calc(var(--shadow-x) * 4) calc(var(--shadow-y) * 4)
+    calc(var(--shadow-blur) * 5) calc(var(--shadow-spread) - 3px)
+    color-mix(
+      in srgb,
+      var(--shadow-color) calc(var(--shadow-opacity) * 100%),
+      transparent
+    );
+  --shadow-xl: calc(var(--shadow-x) * 6) calc(var(--shadow-y) * 6)
+    calc(var(--shadow-blur) * 7) calc(var(--shadow-spread) - 5px)
+    color-mix(
+      in srgb,
+      var(--shadow-color) calc(var(--shadow-opacity) * 100%),
+      transparent
+    );
+  --shadow-2xl: calc(var(--shadow-x) * 8) calc(var(--shadow-y) * 8)
+    calc(max(0px, var(--shadow-blur) * 9 - 8px))
+    calc(var(--shadow-spread) - 12px)
+    color-mix(
+      in srgb,
+      var(--shadow-color) calc(var(--shadow-opacity) * 250%),
+      transparent
+    );
   --shadow: var(--shadow-md);
   --color-shadow-color: var(--shadow-color);
   --shadow-opacity: var(--shadow-opacity);
@@ -113,7 +144,6 @@
   --shadow-blur: var(--shadow-blur);
   --shadow-y: var(--shadow-y);
   --shadow-x: var(--shadow-x);
-
 
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
@@ -135,7 +165,7 @@
     }
   }
 
-/*  CTA Aurora Text Animation*/
+  /*  CTA Aurora Text Animation*/
   --animate-aurora: aurora 8s ease-in-out infinite alternate;
 
   @keyframes aurora {
@@ -189,11 +219,10 @@
 }
 
 @layer base {
-  button:not(:disabled), [role="button"]:not(:disabled) {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
     @apply cursor-pointer;
   }
-
-
 }
 
 /* Elite glassmorphic card styles with signature top glow */
@@ -204,7 +233,9 @@
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
-    box-shadow: 0 8px 32px rgba(4, 24, 33, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 8px 32px rgba(4, 24, 33, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
   }
 
@@ -216,37 +247,41 @@
     right: 0;
     height: 1px;
     background: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(93, 213, 237, 0.6) 20%,
-            rgba(93, 213, 237, 0.8) 50%,
-            rgba(93, 213, 237, 0.6) 80%,
-            transparent 100%
+      90deg,
+      transparent 0%,
+      rgba(93, 213, 237, 0.6) 20%,
+      rgba(93, 213, 237, 0.8) 50%,
+      rgba(93, 213, 237, 0.6) 80%,
+      transparent 100%
     );
     border-radius: 1rem 1rem 0 0;
   }
 
   .glass-card:hover::before {
     background: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(93, 213, 237, 0.8) 20%,
-            rgba(93, 213, 237, 1) 50%,
-            rgba(93, 213, 237, 0.8) 80%,
-            transparent 100%
+      90deg,
+      transparent 0%,
+      rgba(93, 213, 237, 0.8) 20%,
+      rgba(93, 213, 237, 1) 50%,
+      rgba(93, 213, 237, 0.8) 80%,
+      transparent 100%
     );
   }
 
   /* Premium button with cyan glow */
   .btn-primary {
     background: linear-gradient(to right, #5dd5ed, #4fc3f7);
-    box-shadow: 0 0 20px rgba(93, 213, 237, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow:
+      0 0 20px rgba(93, 213, 237, 0.4),
+      0 4px 12px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
   }
 
   .btn-primary:hover {
     background: linear-gradient(to right, #4fc3f7, #5dd5ed);
-    box-shadow: 0 0 30px rgba(93, 213, 237, 0.6), 0 6px 16px rgba(0, 0, 0, 0.4);
+    box-shadow:
+      0 0 30px rgba(93, 213, 237, 0.6),
+      0 6px 16px rgba(0, 0, 0, 0.4);
     transform: translateY(-1px);
   }
 
@@ -276,17 +311,27 @@
   /* Neumorphic button styles with inner glow and edge effects */
   .btn-neomorph {
     position: relative;
-    background: linear-gradient(135deg, rgba(30, 42, 58, 0.8) 0%, rgba(36, 52, 71, 0.9) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(30, 42, 58, 0.8) 0%,
+      rgba(36, 52, 71, 0.9) 100%
+    );
     border: 1px solid rgba(93, 213, 237, 0.2);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
   }
 
   .btn-neomorph:hover {
     border-color: rgba(93, 213, 237, 0.4);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 0 40px rgba(93, 213, 237, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    box-shadow:
+      0 6px 24px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(93, 213, 237, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3);
     transform: translateY(-1px);
   }
 
@@ -294,7 +339,11 @@
   .btn-inner-glow {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(93, 213, 237, 0.1) 0%, transparent 50%);
+    background: linear-gradient(
+      135deg,
+      rgba(93, 213, 237, 0.1) 0%,
+      transparent 50%
+    );
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
@@ -312,7 +361,12 @@
     z-index: 4;
     height: 2px;
     width: 60%;
-    background: linear-gradient(90deg, transparent 0%, rgba(93, 213, 237, 0.8) 50%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(93, 213, 237, 0.8) 50%,
+      transparent 100%
+    );
     opacity: 0;
     transition: all 0.5s ease;
     pointer-events: none;
@@ -331,7 +385,12 @@
     z-index: 4;
     height: 2px;
     width: 35%;
-    background: linear-gradient(90deg, transparent 0%, rgba(93, 213, 237, 0.8) 50%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(93, 213, 237, 0.8) 50%,
+      transparent 100%
+    );
     opacity: 0;
     transition: all 0.5s ease;
     pointer-events: none;
@@ -345,33 +404,45 @@
   /* Silver variant for secondary buttons */
   .btn-neomorph-silver {
     position: relative;
-    background: linear-gradient(135deg, rgba(30, 42, 58, 0.8) 0%, rgba(36, 52, 71, 0.9) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(30, 42, 58, 0.8) 0%,
+      rgba(36, 52, 71, 0.9) 100%
+    );
     border: 1px solid rgba(203, 213, 224, 0.2);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
   }
 
   .btn-neomorph-silver:hover {
     border-color: rgba(203, 213, 224, 0.4);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 0 40px rgba(203, 213, 224, 0.15), inset 0 1px 0
-    rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    box-shadow:
+      0 6px 24px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(203, 213, 224, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3);
     transform: translateY(-1px);
   }
 
   .btn-neomorph-silver:hover .btn-glow-top,
   .btn-neomorph-silver:hover .btn-glow-bottom {
-    background: linear-gradient(90deg, transparent 0%, rgba(203, 213, 224, 0.6) 50%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(203, 213, 224, 0.6) 50%,
+      transparent 100%
+    );
   }
-
 
   .headline-glow {
     @apply max-lg:max-w-md
     text-white [text-shadow:0_0_10px_rgba(255,255,255,0.4),_0_0_20px_rgba(255,255,255,0.3),_0_0_30px_rgba(255,255,255,0.4)];
   }
-
 }
-
 
 @layer utilities {
   .marquee {
@@ -385,6 +456,4 @@
     overflow: hidden;
     width: 100%;
   }
-
-
 }

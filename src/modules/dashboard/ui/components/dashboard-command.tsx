@@ -27,14 +27,14 @@ const DashboardCommand = ({ open, setOpen }: DashboardCommandProps) => {
     trpc.agents.getMany.queryOptions({
       search,
       pageSize: 100,
-    }),
+    })
   );
 
   const meetings = useQuery(
     trpc.meetings.getMany.queryOptions({
       search,
       pageSize: 100,
-    }),
+    })
   );
 
   return (
