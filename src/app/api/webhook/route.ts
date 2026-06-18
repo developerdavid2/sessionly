@@ -1,5 +1,6 @@
 import { streamVideo } from "@/lib/stream-video";
 import { NextRequest, NextResponse } from "next/server";
+import zlib from "zlib";
 import {
   CallEndedEvent,
   CallRecordingReadyEvent,
@@ -24,6 +25,45 @@ const openaiClient = new OpenAI({
 
 function verifySignatureWithSDK(body: string, signature: string): boolean {
   return streamVideo.verifyWebhook(body, signature);
+}
+
+/**
+ * Stream gzip-compresses webhook payloads (Content-Encoding: gzip) — this
+ * is the default for apps created after May 7, 2026, but can also be
+ * toggled on for older apps. The HMAC signature is computed over the
+ * DECOMPRESSED body, so reading the raw text via req.text() and verifying
+ * directly against it always fails once compression is on: req.text()
+ * decodes the raw gzip bytes as UTF-8, producing garbage that can never
+ * match the signature Stream computed over the original JSON. This was
+ * the root cause of every persistent "Invalid signature" 401 in this app,
+ * not a timing or replay issue.
+ *
+ * Fix: read the raw bytes, detect the gzip magic number (0x1f 0x8b), and
+ * gunzip before verifying/parsing. Uncompressed bodies pass through
+ * unchanged, so this works whether or not compression is enabled.
+ */
+function decodeWebhookBody(buffer: Buffer): string {
+  const isGzipped =
+    buffer.length > 2 && buffer[0] === 0x1f && buffer[1] === 0x8b;
+  const raw = isGzipped ? zlib.gunzipSync(buffer) : buffer;
+  return raw.toString("utf-8");
+}
+
+/**
+ * Stream sometimes sends `call.custom` as null/empty depending on how the
+ * call was created. Every event payload also carries `call_cid` in the
+ * shape "default:<callId>", and the callId IS the meetingId in this app.
+ * Prefer the explicit custom field, but fall back to parsing call_cid so a
+ * missing custom field doesn't hard-fail the whole event.
+ */
+function resolveMeetingId(
+  customMeetingId: unknown,
+  callCid: string | undefined | null,
+): string | undefined {
+  if (typeof customMeetingId === "string" && customMeetingId.length > 0) {
+    return customMeetingId;
+  }
+  return callCid?.split(":")[1];
 }
 
 export async function GET(req: NextRequest) {
@@ -88,7 +128,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const body = await req.text();
+  const rawBuffer = Buffer.from(await req.arrayBuffer());
+  const body = decodeWebhookBody(rawBuffer);
 
   if (!verifySignatureWithSDK(body, signature)) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
@@ -108,11 +149,14 @@ export async function POST(req: NextRequest) {
 
   if (eventType === "call.session_started") {
     const event = payload as CallSessionStartedEvent;
-    const meetingId = event.call?.custom?.meetingId;
+    const meetingId = resolveMeetingId(
+      event.call?.custom?.meetingId,
+      event.call_cid,
+    );
 
     if (!meetingId) {
       return NextResponse.json(
-        { error: "Missing meeting ID in call custom data" },
+        { error: "Missing meeting ID in call custom data or call_cid" },
         { status: 400 },
       );
     }
@@ -151,25 +195,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Agent not found" }, { status: 404 });
     }
 
-    const call = streamVideo.video.call("default", meetingId);
-
-    try {
-      const realtimeClient = await streamVideo.video.connectOpenAi({
-        call,
-        openAiApiKey: process.env.OPENAI_API_KEY!,
-        agentUserId: existingAgent.id,
-      });
-
-      realtimeClient.updateSession({
-        instructions: existingAgent.instructions,
-      });
-    } catch (error) {
-      console.error("Error connecting agent to call:", error);
-      return NextResponse.json(
-        { error: "Failed to connect agent to call" },
-        { status: 500 },
-      );
-    }
+    // Connecting the realtime OpenAI agent can be slow (cold handshake,
+    // network variance). Doing this inline blocked the webhook response and
+    // was the cause of Stream's "context deadline exceeded" timeouts. We now
+    // ack the webhook immediately and hand the connection off to a
+    // background Inngest function instead.
+    await inngest.send({
+      name: "meetings/agent.connect",
+      data: {
+        meetingId,
+        agentId: existingAgent.id,
+        agentInstructions: existingAgent.instructions,
+      },
+    });
   } else if (eventType === "call.session_participant_left") {
     const event = payload as CallSessionParticipantLeftEvent;
     const meetingId = event.call_cid?.split(":")[1];
@@ -185,11 +223,14 @@ export async function POST(req: NextRequest) {
     await call.end();
   } else if (eventType === "call.session_ended") {
     const event = payload as CallEndedEvent;
-    const meetingId = event.call?.custom?.meetingId;
+    const meetingId = resolveMeetingId(
+      event.call?.custom?.meetingId,
+      event.call_cid,
+    );
 
     if (!meetingId) {
       return NextResponse.json(
-        { error: "Missing meeting ID in call custom data" },
+        { error: "Missing meeting ID in call custom data or call_cid" },
         { status: 400 },
       );
     }

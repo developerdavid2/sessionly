@@ -4,25 +4,25 @@
 
 :root {
   /* Deep slate blue with teal undertones - single dark mode palette */
-  --background: oklch(0.15 0.02 230);
+  --background: oklch(0% 0 0);
   --foreground: oklch(0.95 0.01 240);
   --card: oklch(0.197 0.004 286.029);
   --card-foreground: oklch(0.95 0.01 240);
-  --popover: oklch(0.243 0.002 247.926);
+  --popover: oklch(31.354% 0.00179 286.006);
   --popover-foreground: oklch(0.95 0.01 240);
-  --primary: oklch(0.293 0 89.876);
-  --primary-foreground: oklch(0.15 0.02 230);
+  --primary: oklch(0.65 0.12 220);
+  --primary-foreground: oklch(0.95 0.01 240);
   --secondary: oklch(0.239 0 89.876);
   --secondary-foreground: oklch(0.9 0.01 240);
   --muted: oklch(0.373 0.003 17.279);
-  --muted-foreground: oklch(0.304 0.001 197.082);
+  --muted-foreground: oklch(58.715% 0.00363 198.072);
   --accent: oklch(0.349 0.001 17.224);
   --accent-foreground: oklch(0.95 0.01 240);
   --destructive: oklch(0.65 0.2 25);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.333 0 89.876 / 0.73);
-  --input: oklch(0.25 0.03 235);
-  --ring: oklch(0.7 0.15 195);
+  --input: oklch(26.797% 0.00239 248.209);
+  --ring: oklch(31.603% 0.05284 194.85);
   --chart-1: oklch(0.7 0.15 195);
   --chart-2: oklch(0.65 0.12 220);
   --chart-3: oklch(0.6 0.1 250);

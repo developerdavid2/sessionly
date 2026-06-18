@@ -54,14 +54,12 @@ export const MeetingIdView = ({ meetingId }: Props) => {
           onRemove={() => setIsDeleteDialogOpen(true)}
         />
 
-        <div className="bg-background rounded-lg border">
-          <div className="px-4 py-5 gap-y-5 flex flex-col col-span-5">
-            {isUpcoming && <UpcomingState meetingId={meetingId} />}
-            {isActive && <ActiveState meetingId={meetingId} />}
-            {isProcessing && <ProcessingState />}
-            {isCompleted && <CompletedState data={data} />}
-            {isCancelled && <CancelledState />}
-          </div>
+        <div className="px-4 py-5 gap-y-5 flex flex-col col-span-5 bg-card rounded-xl">
+          {isUpcoming && <UpcomingState meetingId={meetingId} />}
+          {isActive && <ActiveState meetingId={meetingId} />}
+          {isProcessing && <ProcessingState />}
+          {isCompleted && <CompletedState data={data} />}
+          {isCancelled && <CancelledState />}
         </div>
       </div>
     </>

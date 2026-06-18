@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { SearchIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import DashboardCommand from "@/modules/dashboard/ui/components/dashboard-command";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+import DashboardCommand from "@/modules/dashboard/ui/components/dashboard-command";
+import { SearchIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const DashboardNavbar = () => {
   const [openCommand, setOpenCommand] = useState(false);
@@ -32,8 +31,8 @@ const DashboardNavbar = () => {
         <SidebarTrigger className={cn("size-9 cursor-pointer")} />
         <Separator orientation="vertical" className="mx-2 h-4" />
         <Button
-          className="h-9 w-fit justify-start font-normal text-muted-foreground hover:text-muted-foreground"
-          variant="outline"
+          className="h-9 w-fit justify-start bg-secondary font-normal hover:text-gray-200"
+          variant="ghost"
           size="sm"
           onClick={() => {
             setOpenCommand((open) => !open);
@@ -41,11 +40,10 @@ const DashboardNavbar = () => {
         >
           <SearchIcon />
           Search or type a command
-          <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+          <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium">
             <span className="text-xs">&#8984;</span>K
           </kbd>
         </Button>
-        <ModeToggle />
       </nav>
     </>
   );

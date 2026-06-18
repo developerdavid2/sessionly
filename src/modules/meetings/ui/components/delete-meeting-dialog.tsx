@@ -80,7 +80,6 @@ export const DeleteMeetingDialog = ({
       <div className="pt-4 w-full flex flex-col-reverse gap-y-2 lg:flex-row gap-x-2 items-center justify-end">
         <Button
           onClick={() => onOpenChange(false)}
-          variant="outline"
           className="w-full lg:w-auto"
           disabled={isDeleting}
         >

@@ -24,9 +24,7 @@ const Layout = ({ children }: Props) => {
         <DashboardSidebar />
         <div className="flex flex-col flex-1 min-w-0">
           <DashboardNavbar />
-          <main className="flex-1 overflow-auto bg-[#1F2121]/50">
-            {children}
-          </main>
+          <main className="flex-1 overflow-auto bg-background">{children}</main>
         </div>
       </div>
     </SidebarProvider>

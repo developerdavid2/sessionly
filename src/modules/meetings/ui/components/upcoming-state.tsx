@@ -17,7 +17,7 @@ export const UpcomingState = ({ meetingId }: Props) => {
   };
 
   return (
-    <div className="bg-background rounded-lg px-4 py-5 flex flex-col gap-y-8 items-center justify-center">
+    <div className="bg-card rounded-lg px-4 py-5 flex flex-col gap-y-8 items-center justify-center">
       <EmptyState
         title="Not started yet"
         description="Once you start this meeting, it will appear here."
